@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  min-height:100vh;
+  background-image: url('./images/dashboard-background.jpg');
+  background-size: cover;
 }
 
 .App-header {
@@ -16,12 +19,32 @@
 .dashboard-container {
   display:flex;
   justify-content:space-evenly;
-  margin:5% auto;
-  width:80%;
+  margin:3% auto;
+}
+
+.split-container {
+  border-radius:25px;
+  padding:2%;
+  color:white;
+  background-image: linear-gradient(purple, red);
+}
+
+.title-container {
+  color:white;
+  background-image: linear-gradient(purple, red);
+  margin:0 auto;
+  width:50%;
+  border-radius:5px;
+  padding:2%;
 }
 
 .profile-div {
   margin: 3%;
+  text-align:center;
+}
+
+.profile-div label {
+  width:100%;
 }
 
 .favorites-list {
