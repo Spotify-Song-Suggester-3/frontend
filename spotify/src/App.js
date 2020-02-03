@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import BrowsePage from './components/BrowsePage';
+// import BrowsePage from './components/BrowsePage';
 
 function App() {
   return (
@@ -20,7 +20,9 @@ function App() {
           Learn React
         </a>
       </header> */}
-      <BrowsePage/>
+
+{/*       
+      <BrowsePage/> */}
     </div>
   );
 }
