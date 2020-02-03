@@ -11,7 +11,7 @@ export const fetchSongs =()=>dispatch=>{
     axios
     .get("https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg/top-tracks?country=US")
     .then(res=>{
-        console.log('FETCHSONGS',res.data)
+        console.log('FETCHSONGS',res)
         dispatch({type:FETCHING_SONGS_SUCCESS, payload:res.data})
     })
     .catch(err=>{

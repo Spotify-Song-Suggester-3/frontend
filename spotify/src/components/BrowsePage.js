@@ -8,32 +8,35 @@ return (
     <div>
         <h1>Browse Artists</h1>
         <button onClick ={props.fetchSongs}>Browse</button>
-        {!props.tracks && !props.isFetching &&(<p>Click to browse a chosen selection!</p>)}
-{/* 
-        {props.tracks && !props.isFetching &&(
+        {!props.gettingSongs && !props.loading &&(<p>Click to browse a chosen selection!</p>)}
+
+
+        {props.gettingSongs && !props.loading &&(
 
 <div>
-                    {props.tracks.map((song) =>{
+     {props.gettingSongs.tracks.map((song, id) =>{
                         return(
                             <div>
-                    <h3>Artist: {song.title}</h3>
-                    }
-
-
-        )} */}
+                        
+                    <h3>Title: {song.name}</h3>
+                        <p>popularity:{song.popularity}</p>
+                        
+                    </div>
+                        )
+     })}
     </div>
+)}
+
+</div>
 )
-
-
-
 
 
 }
 
 const mapStateToProps =state =>{
     return{
-        tracks: state.tracks,
-        isFetching:state.isFetching,
+        loading: state.loading,
+        gettingSongs:state.gettingSongs,
         error:state.error
     };
 }

@@ -2,8 +2,8 @@
 import {FETCHING_SONGS_START, FETCHING_SONGS_SUCCESS, FETCHING_SONGS_FAILURE} from '../actions';
 
 const intialState ={
-    tracks:[],
-    isFetching:false,
+  loading:false,
+  gettingSongs:null,
     error:''
 }
 
@@ -13,14 +13,14 @@ export const reducer = (state =intialState, action)=>{
        case FETCHING_SONGS_START:
            return{
                ...state, 
-               isFetching: true,
+               loading: true,
                error:''
            }
         case FETCHING_SONGS_SUCCESS:
             return{
                 ...state,
-                tracks: action.payload,
-                isFetching:false,
+                loading:false,
+                gettingSongs:action.payload,
                 error:''
             };
 
@@ -28,7 +28,7 @@ export const reducer = (state =intialState, action)=>{
                 return{
                     ...state,
                     loading:null,
-                    isFetching:null,
+                    gettingSongs:null,
                     error: 'ERROR FETCHING SONGS'
                 }
 
