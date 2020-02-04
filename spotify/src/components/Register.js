@@ -51,6 +51,13 @@ const Button = styled.button`
 `;
 
 const Register = ({ values, errors, touched, status }) => {
+  const [toggled, setToggled] = useState(false);
+  const [lastname, setLastname] = useState(false);
+  const [usernam, setUsernam] = useState(false);
+  const [emai, setemai] = useState(false);
+  const [passwor, setPasswor] = useState(false);
+  const [passworComfirm, setPassworComfirm] = useState(false);
+
   return (
     <WholeForm>
       <Display>
@@ -58,7 +65,8 @@ const Register = ({ values, errors, touched, status }) => {
           <h2>Register</h2>
           <Label htmlFor="firstName">
             <Field
-              className="border"
+              onSelect={() => setToggled(!toggled)}
+              className={`border ${toggled ? "toggled" : ""}`}
               id="firstName"
               type="text"
               name="firstName"
@@ -70,7 +78,8 @@ const Register = ({ values, errors, touched, status }) => {
           </Label>
           <Label htmlFor="lastName">
             <Field
-              className="border"
+              onSelect={() => setLastname(!lastname)}
+              className={`border ${lastname ? "toggled" : ""}`}
               id="lastName"
               type="text"
               name="lastName"
@@ -82,7 +91,8 @@ const Register = ({ values, errors, touched, status }) => {
           </Label>
           <Label htmlFor="username">
             <Field
-              className="border"
+              onSelect={() => setUsernam(!usernam)}
+              className={`border ${usernam ? "toggled" : ""}`}
               id="username"
               type="text"
               name="username"
@@ -94,7 +104,8 @@ const Register = ({ values, errors, touched, status }) => {
           </Label>
           <Label htmlFor="email">
             <Field
-              className="border"
+              onSelect={() => setemai(!emai)}
+              className={`border ${emai ? "toggled" : ""}`}
               id="email"
               type="text"
               name="email"
@@ -106,7 +117,8 @@ const Register = ({ values, errors, touched, status }) => {
           </Label>
           <Label htmlFor="password">
             <Field
-              className="border"
+              onSelect={() => setPasswor(!passwor)}
+              className={`border ${passwor ? "toggled" : ""}`}
               id="password"
               type="text"
               name="password"
@@ -118,7 +130,8 @@ const Register = ({ values, errors, touched, status }) => {
           </Label>
           <Label htmlFor="passwordconfirm">
             <Field
-              className="border"
+              onSelect={() => setPassworComfirm(!passworComfirm)}
+              className={`border ${passworComfirm ? "toggled" : ""}`}
               id="passwordconfirm"
               type="text"
               name="passwordconfirm"
