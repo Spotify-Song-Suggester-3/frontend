@@ -1,21 +1,12 @@
 .App {
   text-align: center;
+  min-height:100vh;
+  background-image: url('./images/dashboard-background.jpg');
+  background-size: cover;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 25px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,18 +14,27 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.dashboard-container {
+  display:flex;
+  justify-content:space-evenly;
+  margin:3% auto;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.split-container {
+  border-radius:25px;
+  padding:2%;
+  color:white;
+  background-image: linear-gradient(purple, red);
+}
+.title-container {
+  color:white;
+  background-image: linear-gradient(red, purple);
+  margin:0 auto;
+  width:25%;
+  border-radius:10px;
+  padding:1%;
+}
+.title-container h2 {
+  font-size:1.5rem;
 }
 
 .border {
@@ -57,3 +57,19 @@ button {
 .button:hover {
   color: red;
 }
+
+.profile-div {
+  margin: 3%;
+  text-align:center;
+}
+.profile-div label {
+  width:100%;
+}
+.fav-container {
+  width:20%;
+}
+.favorites-list {
+  border: 1px solid white;
+  padding-bottom:5%;
+}
+
