@@ -54,10 +54,7 @@ const Button = styled.button`
 `;
 
 const Login = ({ values, errors, touched, status }) => {
-    const history = useHistory();
-  const handleClick = () => {
-      history.push('/dashboard')
-    };
+  //   const history = useHistory();
 
   return (
     <WholeForm>
@@ -90,7 +87,7 @@ const Login = ({ values, errors, touched, status }) => {
               <p className="hasError">{errors.password}</p>
             )}
           </Label>
-          <Button type="submit" onClick={handleClick}>LOG IN</Button>
+          <Button type="submit">LOG IN</Button>
         </Form1>
         <Link to="/register">
           <button className="button">Don't have an account? Sign Up</button>
@@ -123,8 +120,7 @@ const ForMikLogin = withFormik({
       .then(response => {
         localStorage.setItem("token", response.data.token);
         console.log(response.data);
-        console.log(response);
-        
+        // history.push("/dashboard");
       })
       .catch(error => console.log(error.response));
     console.log("submitted email:", values.username);
