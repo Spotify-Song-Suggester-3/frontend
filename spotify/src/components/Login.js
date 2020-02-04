@@ -117,5 +117,5 @@ const ForMikLogin = withFormik({
     }
 })(Login);
 
-export default connect (null, {setUserID})(ForMikLogin);
+export default ForMikLogin;
  
