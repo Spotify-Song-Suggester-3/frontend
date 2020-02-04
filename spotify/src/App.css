@@ -38,6 +38,25 @@
   padding:2%;
 }
 
+
+.border {
+  width: 100%;
+  position: relative;
+  border: none;
+  border-bottom: 2px solid #d9d9d9;
+  padding-bottom: 13px;
+  margin-top: 5%;
+  outline: none;
+}
+
+button{
+  border: none;
+  background-color: white;
+}
+.button:hover{
+  color:red;
+}
+
 .profile-div {
   margin: 3%;
   text-align:center;
@@ -51,3 +70,4 @@
   border: 1px solid black;
   padding-bottom:5%;
 }
+
