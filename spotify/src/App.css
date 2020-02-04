@@ -4,52 +4,48 @@
   background-image: url('./images/dashboard-background.jpg');
   background-size: cover;
 }
-
 .App-header {
-  background-image: linear-gradient(purple, red);
-  min-height: 50px;
+  background-color: #282c34;
+  min-height: 25px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  width:500px;
-  margin:0 auto;
-  border-radius: 10px;
 }
-
 .dashboard-container {
   display:flex;
-  justify-content:space-between;
-  margin:5%;
+  justify-content:space-evenly;
+  margin:3% auto;
 }
-
 .split-container {
   border-radius:25px;
   padding:2%;
   color:white;
   background-image: linear-gradient(purple, red);
 }
-
 .title-container {
   color:white;
   background-image: linear-gradient(red, purple);
-  margin:1% auto;
-  width:30%;
-  border-radius:15px;
+  margin:0 auto;
+  width:25%;
+  border-radius:10px;
   padding:1%;
 }
-
+.title-container h2 {
+  font-size:1.5rem;
+}
 .profile-div {
   margin: 3%;
   text-align:center;
 }
-
 .profile-div label {
   width:100%;
 }
-
+.fav-container {
+  width:20%;
+}
 .favorites-list {
   border: 1px solid white;
   padding-bottom:5%;
