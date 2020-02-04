@@ -5,6 +5,8 @@ import SearchFeed from './SearchFeed';
 import {Button, Fade, Card} from 'reactstrap';
 const BrowsePage = (props)=>{
 const [searchTerm, setSearchTerm] = useState('');
+
+
 const searchOnEnter =e =>{
     if (e.key ==='Enter'){
         setSearchTerm(e.target.value);
@@ -16,9 +18,9 @@ return (
         <nav>
     <a href = "/dashboard">Home </a>
     <a href = '/'>Logout</a>
-
+<a hrerf = "/browse">Search</a>
         </nav>
-<h5>Search</h5>
+
 
 <div className = "seach-bar">
 <input
@@ -29,21 +31,23 @@ onKeyUp = {searchOnEnter}
 />
 <SearchFeed term ={searchTerm}/>
 </div>
+
 <div className = "browse-return-cont">
         <h1>Browse Artists</h1>
-        <button onClick ={props.fetchSongs}>Browse</button>
-        {!props.isFetching && !props.songs &&(<p>Click to browse a chosen selection!</p>)}
+        <Button color="primary" onClick ={props.fetchSongs}>Browse</Button> 
+        {!props.isFetching && !props.loading &&(
+<p>Click to browse a chosen selection!</p>)}
 
 
-        {props.isFetching && !props.songs &&(
+        {props.isFetching && !props.loading &&(
 
 <div className = "browse-map-cont">
      {props.isFetching.tracks.map((song, id) =>{
                         return(
                             <div className = "browse-songs-return">
                         
-                    <h3>Title: {song.songs.tracks.name}</h3>
-                        <p>popularity:{song.popularity}</p>
+                    <h3>Artist: {song.name}</h3>
+                        <p>Title:{song.popularity}</p>
 
                         
                         {/*setup for OUR points:
@@ -66,6 +70,7 @@ onKeyUp = {searchOnEnter}
 
 const mapStateToProps =state =>{
     return{
+        loading:state.loading,
         songs:state.songs,
         isFetching:state.isFetching,
         error:state.error,

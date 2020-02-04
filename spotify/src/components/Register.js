@@ -5,7 +5,7 @@ import styled from "styled-components";
 import '../App.css';
 import axios from "axios";
 import { Link } from 'react-router-dom';
-import axiosWithAuth from '../utils/axiosWithAuth';
+
 
 const WholeForm = styled.div`
     width: 100%;  
@@ -148,12 +148,10 @@ const ForMikRegister = withFormik({
     }),
     handleSubmit(values, {props, setStatus, resetForm}) {
         console.log("submitting", values);
-        axiosWithAuth()
-        .post("/auth/signup", values)
+        axios
+        .post(values)
         .then(response => {
-            setStatus(response.data);
-            resetForm();
-            props.history.push('/');
+            
             console.log(response.data)
             console.log(response)
         })

@@ -4,6 +4,7 @@ import { FastField } from 'formik';
 
 const intialState ={
     songs:[],
+    loading:false,
   isFiltering:false,
   isFethcing:false,
     error:'',
@@ -17,6 +18,7 @@ export const reducer = (state =intialState, action)=>{
        case FETCHING_SONGS_START:
            return{
                ...state, 
+               loading:true,
                isFethcing: true,
                error:'',
                isFiltering:false,
@@ -25,8 +27,8 @@ export const reducer = (state =intialState, action)=>{
         case FETCHING_SONGS_SUCCESS:
             return{
                 ...state,
-                songs:action.payload,
-                isFethcing:false,
+                loading:false,
+                isFethcing:action.payload,
                 error:''
             };
 
@@ -34,7 +36,7 @@ export const reducer = (state =intialState, action)=>{
                 return{
                     ...state,
                     isFethcing:false,
-                    error: 'ERROR FETCHING SONGS'
+                    error: action.payload
                 }
 
             case SET_USER_ID:

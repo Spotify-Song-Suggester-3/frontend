@@ -25,7 +25,6 @@ const store = createStore(reducer, applyMiddleware(thunk, logger))
 
 ReactDOM.render(
 
-    // <App/>,
 
  <Provider store= {store}>
 <App />

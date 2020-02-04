@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
   min-height:100vh;
   background-image: url('./images/dashboard-background.jpg');
@@ -13,7 +13,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 .dashboard-container {
   display:flex;
   justify-content:space-evenly;
@@ -70,3 +70,16 @@ button{
   padding-bottom:5%;
 }
 
+/********************Browse page CSS********************/
+
+.browse-return-cont{
+  border-radius:25px;
+  padding:2%;
+  color:white;
+  background-image: linear-gradient(purple, red);
+
+}
+
+.browse-btn{
+
+}

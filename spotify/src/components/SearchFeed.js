@@ -28,11 +28,11 @@ if (props.isFetching){
 
 return(
 <div>
+<div className = "searc-title"></div>
 
-    <h3>Searching...  </h3>
 
     {filteredSongs.length ? (filteredSongs.map((song, id) =>(
-        <div>
+        <div className = "search-bar">
              
             key:{song.id}
          song:{song.name}

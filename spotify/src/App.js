@@ -14,14 +14,14 @@ function App() {
     <div className="App">
 
       <Switch>
-<BrowsePage/>
+{/* <BrowsePage/> */}
 <Privateroute path = '/browse' component ={BrowsePage}/>
-<Privateroute path = '/dashboard' component = {Dashboard}/>
+
       <Route exact path = '/' component={Login} />
       <Route path = '/register' component={Register}/>
-      
-
-      <Dashboard />
+      <Privateroute path = '/dashboard' component = {Dashboard}/>
+<Login />
+     
       </Switch>
     </div>
     </Router>
