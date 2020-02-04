@@ -20,7 +20,14 @@ return (
                         
                     <h3>Title: {song.name}</h3>
                         <p>popularity:{song.popularity}</p>
+
                         
+                        {/*setup for OUR points:
+                         key{id}
+                        Title{song.song_title},
+                        Artist{song.artist},
+                        favorite{song.favorite} */}
+                        <button>Save Song</button>
                     </div>
                         )
      })}
@@ -37,7 +44,8 @@ const mapStateToProps =state =>{
     return{
         loading: state.loading,
         gettingSongs:state.gettingSongs,
-        error:state.error
+        error:state.error,
+        isFiltering:state.isFiltering
     };
 }
 
