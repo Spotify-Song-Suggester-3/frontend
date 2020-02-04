@@ -1,11 +1,14 @@
 //reducer for fetching of intial songs on BrowsePage (and for filtering songs on search)
-import {FETCHING_SONGS_START, FETCHING_SONGS_SUCCESS, FETCHING_SONGS_FAILURE, FILTER_SONGS} from '../actions';
+import {FETCHING_SONGS_START, FETCHING_SONGS_SUCCESS, FETCHING_SONGS_FAILURE, FILTER_SONGS, SET_USER_ID} from '../actions';
+import { FastField } from 'formik';
 
 const intialState ={
-  loading:false,
+    songs:[],
   isFiltering:false,
-  gettingSongs:null,
-    error:''
+  isFethcing:false,
+    error:'',
+    userID:'',
+    favorites:[]
 }
 
 
@@ -14,30 +17,35 @@ export const reducer = (state =intialState, action)=>{
        case FETCHING_SONGS_START:
            return{
                ...state, 
-               loading: true,
+               isFethcing: true,
                error:'',
-               isFiltering:false
+               isFiltering:false,
+               userID:''
            }
         case FETCHING_SONGS_SUCCESS:
             return{
                 ...state,
-                loading:false,
-                gettingSongs:action.payload,
+                songs:action.payload,
+                isFethcing:false,
                 error:''
             };
 
             case FETCHING_SONGS_FAILURE:
                 return{
                     ...state,
-                    loading:null,
-                    gettingSongs:null,
+                    isFethcing:false,
                     error: 'ERROR FETCHING SONGS'
                 }
 
+            case SET_USER_ID:
+                 return {
+                ...state,
+                userID: action.payload
+            }
                 case FILTER_SONGS:
                     return{
                         ...state, 
-                        gettingSongs:action.payload,
+                        isFethcing:action.payload,
                         isFiltering:true
                     }
 

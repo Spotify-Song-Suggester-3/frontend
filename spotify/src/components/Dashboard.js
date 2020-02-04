@@ -1,13 +1,15 @@
 import React from "react";
 import {Button} from 'reactstrap';
-
+import { Link, Switch, Route} from 'react-router-dom';
 function Dashboard() {
   return (
     <div>
       <h1 className="App-header">Welcome To Your Dashboard</h1>
       <div className="title-container">
         <h2>Let's Find Some New Music!</h2>
+        <Link to = {`/browse`}>
         <Button color="primary">Browse</Button>
+        </Link>
       </div>
       <div className="dashboard-container">
         <div className="split-container">

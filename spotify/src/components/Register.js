@@ -5,7 +5,7 @@ import styled from "styled-components";
 import '../App.css';
 import axios from "axios";
 import { Link } from 'react-router-dom';
-
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 const WholeForm = styled.div`
     width: 100%;  
@@ -146,10 +146,14 @@ const ForMikRegister = withFormik({
         // .oneOf([Yup.ref('password'), null])
         // .required('Password must Match')
     }),
-    handleSubmit(values, {setStatus, resetForm}) {
+    handleSubmit(values, {props, setStatus, resetForm}) {
         console.log("submitting", values);
-        axios.post("https://spotify-song-suggester-3.herokuapp.com/api/auth/signup", values)
+        axiosWithAuth()
+        .post("/auth/signup", values)
         .then(response => {
+            setStatus(response.data);
+            resetForm();
+            props.history.push('/');
             console.log(response.data)
             console.log(response)
         })

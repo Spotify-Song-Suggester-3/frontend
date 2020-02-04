@@ -5,22 +5,26 @@ import BrowsePage from './components/BrowsePage';
 import Login from "./components/Login";
 import Register from "./components/Register";
 import { Route, Link, Switch} from "react-router-dom";
-
+import { BrowserRouter as Router} from 'react-router-dom';
+import Privateroute from './routes/PrivateRoute';
 
 function App() {
   return (
+    <Router>
     <div className="App">
 
-      
-      <BrowsePage/>
-
+      <Switch>
+<BrowsePage/>
+<Privateroute path = '/browse' component ={BrowsePage}/>
+<Privateroute path = '/dashboard' component = {Dashboard}/>
       <Route exact path = '/' component={Login} />
       <Route path = '/register' component={Register}/>
       
 
       <Dashboard />
-
+      </Switch>
     </div>
+    </Router>
   );
 }
 

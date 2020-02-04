@@ -4,8 +4,9 @@ import * as Yup from "yup";
 import styled, { keyframes } from "styled-components";
 import '../App.css';
 import { Link } from 'react-router-dom';
-
-
+import axiosWithAuth from '../utils/axiosWithAuth';
+import {connect} from 'react-redux';
+import {setUserID} from '../actions/index';
 const WholeForm = styled.div`
     width: 100%;  
     height: 100vh;
@@ -110,12 +111,24 @@ const ForMikLogin = withFormik({
         .max(16)
         .required("Password is Required")
     }),
-    handleSubmit(values, {setStatus, resetForm}) {
+    handleSubmit(values, {props, setStatus, resetForm}) {
+        axiosWithAuth()
+        .post('/auth/signup',values)
+        .then(res=>{
+            
+            localStorage.setItem('token',res.data.token)
+            props.setUserID (res.data.id)
+            props.history.push('/')
+        })
+        .catch(err=>{
+            console.warn(err)
+
+        })
 
         console.log("submitted email:", values.username)
         console.log("submitted password:", values.password)
     }
 })(Login);
 
-export default ForMikLogin;
+export default connect (null, {setUserID})(ForMikLogin);
  
