@@ -69,7 +69,7 @@ const Login = ({ values, errors, touched, status }) => {
               id="username"
               type="text"
               name="username"
-              placeholder="username or email"
+              placeholder="username"
             />
             {touched.username && errors.username && (
               <p className="hasError">{errors.username}</p>
