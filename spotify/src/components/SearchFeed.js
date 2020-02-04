@@ -17,7 +17,7 @@ const termLower = props.term.toLowerCase();
 
 // }));
 
-},[props.term, fetchSongs, props.isFiltering]);
+},[props.term, props.isFiltering]);
 
 if (props.gettingSongs){
     return (<p> fetching songs </p>)

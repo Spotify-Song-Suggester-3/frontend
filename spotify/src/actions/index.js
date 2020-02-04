@@ -9,7 +9,7 @@ export const FILTER_SONGS ='FILTER_SONGS';
 export const fetchSongs =()=>dispatch=>{
     dispatch({type:FETCHING_SONGS_START})
     axios
-    .get("https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg/top-tracks?country=US")
+    .get("https://api.spotify.com/v1/tracks?ids=7ouMYWpwJ422jRcDASZB7P%2C4VqPOruhp5EdPBeR92t6lQ%2C2takcwOaAZWiXQijPHIx7B&market=US")
     .then(res=>{
         console.log('FETCHSONGS',res)
         dispatch({type:FETCHING_SONGS_SUCCESS, payload:res.data})
