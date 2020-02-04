@@ -8,9 +8,9 @@ function Dashboard() {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    // axiosWithAuth()
-    axios
-      .get("https://spotify-song-suggester-3.herokuapp.com/api/songs")
+    axiosWithAuth()
+    .get('/songs')
+      // .get("https://spotify-song-suggester-3.herokuapp.com/api/songs")
       .then(response => {
         console.log("favorites get request", response.data);
         setFavorites(response.data);

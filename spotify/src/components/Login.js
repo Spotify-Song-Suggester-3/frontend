@@ -5,6 +5,7 @@ import styled, { keyframes } from "styled-components";
 import "../App.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const WholeForm = styled.div`
   width: 100%;
@@ -53,6 +54,11 @@ const Button = styled.button`
 `;
 
 const Login = ({ values, errors, touched, status }) => {
+    const history = useHistory();
+  const handleClick = () => {
+      history.push('/dashboard')
+    };
+
   return (
     <WholeForm>
       <Display>
@@ -84,7 +90,7 @@ const Login = ({ values, errors, touched, status }) => {
               <p className="hasError">{errors.password}</p>
             )}
           </Label>
-          <Button type="submit">LOG IN</Button>
+          <Button type="submit" onClick={handleClick}>LOG IN</Button>
         </Form1>
         <Link to="/register">
           <button className="button">Don't have an account? Sign Up</button>
@@ -115,8 +121,10 @@ const ForMikLogin = withFormik({
         values
       )
       .then(response => {
+        localStorage.setItem("token", response.data.token);
         console.log(response.data);
         console.log(response);
+        
       })
       .catch(error => console.log(error.response));
     console.log("submitted email:", values.username);
