@@ -54,6 +54,9 @@ button {
   border: none;
   background-color: white;
 }
+.hasError {
+  color: darkred;
+}
 .button:hover {
   color: red;
 }

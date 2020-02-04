@@ -48,6 +48,9 @@ const Button = styled.button`
   border: none;
   background-size: 300% 100%;
   border-radius: 50px;
+  &:hover {
+    background: linear-gradient(red, purple);
+  }
 `;
 
 const Register = ({ values, errors, touched, status }) => {
@@ -177,7 +180,7 @@ const ForMikRegister = withFormik({
       .email()
       .required("Email is Required"),
     password: Yup.string()
-      .min(8)
+      .min(6)
       .max(16)
       .required("Password is Required"),
     passwordconfirm: Yup.string().oneOf(
