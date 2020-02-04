@@ -12,17 +12,12 @@ function App() {
   return (
     <Router>
     <div className="App">
-
-      <Switch>
-{/* <BrowsePage/> */}
-<Privateroute path = '/browse' component ={BrowsePage}/>
-
       <Route exact path = '/' component={Login} />
       <Route path = '/register' component={Register}/>
-      <Privateroute path = '/dashboard' component = {Dashboard}/>
-<Login />
-     
-      </Switch>
+      <Route path = '/browse' component={BrowsePage}/>
+      <Route path = '/dashboard' component={Dashboard}/>
+      {/* <PrivateRoute exact path='/dashboard' component={Dashboard} /> /> */}
+
     </div>
     </Router>
   );
