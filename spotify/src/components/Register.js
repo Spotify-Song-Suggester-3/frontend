@@ -65,7 +65,7 @@ const Register = ({ values, errors, touched, status }) => {
           <h2>Register</h2>
           <Label htmlFor="firstName">
             <Field
-              onSelect={() => setToggled(!toggled)}
+              onFocus={() => setToggled(!toggled)}
               className={`border ${toggled ? "toggled" : ""}`}
               id="firstName"
               type="text"
@@ -78,7 +78,7 @@ const Register = ({ values, errors, touched, status }) => {
           </Label>
           <Label htmlFor="lastName">
             <Field
-              onSelect={() => setLastname(!lastname)}
+              onFocus={() => setLastname(!lastname)}
               className={`border ${lastname ? "toggled" : ""}`}
               id="lastName"
               type="text"
@@ -91,7 +91,7 @@ const Register = ({ values, errors, touched, status }) => {
           </Label>
           <Label htmlFor="username">
             <Field
-              onSelect={() => setUsernam(!usernam)}
+              onFocus={() => setUsernam(!usernam)}
               className={`border ${usernam ? "toggled" : ""}`}
               id="username"
               type="text"
@@ -104,7 +104,7 @@ const Register = ({ values, errors, touched, status }) => {
           </Label>
           <Label htmlFor="email">
             <Field
-              onSelect={() => setemai(!emai)}
+              onFocus={() => setemai(!emai)}
               className={`border ${emai ? "toggled" : ""}`}
               id="email"
               type="text"
@@ -117,7 +117,7 @@ const Register = ({ values, errors, touched, status }) => {
           </Label>
           <Label htmlFor="password">
             <Field
-              onSelect={() => setPasswor(!passwor)}
+              onFocus={() => setPasswor(!passwor)}
               className={`border ${passwor ? "toggled" : ""}`}
               id="password"
               type="text"
@@ -130,7 +130,7 @@ const Register = ({ values, errors, touched, status }) => {
           </Label>
           <Label htmlFor="passwordconfirm">
             <Field
-              onSelect={() => setPassworComfirm(!passworComfirm)}
+              onFocus={() => setPassworComfirm(!passworComfirm)}
               className={`border ${passworComfirm ? "toggled" : ""}`}
               id="passwordconfirm"
               type="text"

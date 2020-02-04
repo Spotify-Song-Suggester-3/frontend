@@ -53,6 +53,8 @@ const Button = styled.button`
 `;
 
 const Login = ({ values, errors, touched, status }) => {
+  const [usernam, setUsernam] = useState(false);
+  const [passwor, setPasswor] = useState(false);
   return (
     <WholeForm>
       <Display>
@@ -62,7 +64,8 @@ const Login = ({ values, errors, touched, status }) => {
 
           <Label htmlFor="username">
             <Field
-              className="border"
+              onFocus={() => setUsernam(!usernam)}
+              className={`border ${usernam ? "toggled" : ""}`}
               id="username"
               type="text"
               name="username"
@@ -74,7 +77,8 @@ const Login = ({ values, errors, touched, status }) => {
           </Label>
           <Label htmlFor="password">
             <Field
-              className="border"
+              onFocus={() => setPasswor(!passwor)}
+              className={`border ${passwor ? "toggled" : ""}`}
               id="password"
               type="text"
               name="password"
