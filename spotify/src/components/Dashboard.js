@@ -12,7 +12,7 @@ function Dashboard() {
       <div className="dashboard-container">
         <div className="split-container">
           <h2>Welcome (username)</h2>
-          <p>Edit Login or Password</p>
+          <p>Edit Your Profile Here</p>
           <form className="profile-form">
             <div className="profile-div">
               <label>Username: </label>
@@ -22,15 +22,27 @@ function Dashboard() {
               <label>Password: </label>
               <input />
             </div>
+            <div className="profile-div">
+              <label>First Name: </label>
+              <input />
+            </div>
+            <div className="profile-div">
+              <label>Last Name: </label>
+              <input />
+            </div>
+            <div className="profile-div">
+              <label>E-Mail: </label>
+              <input />
+            </div>
           </form>
-          <Button className="profile-div" color="success">Edit Profile</Button>
+          <Button className="profile-div" color="primary">Edit Profile</Button>
         </div>
         <div className="split-container">
         <h2>Favorite Songs List</h2>
           <div className="favorites-list">
             <p>song: test</p>
             <p>artist: test</p>
-            <Button color="warning">Delete Song</Button>
+            <Button color="secondary">Delete Song</Button>
           </div>
         </div>
       </div>
