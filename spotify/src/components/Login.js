@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { withFormik, Form as Form1, Field } from "formik";
 import * as Yup from "yup";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import '../App.css';
 import { Link } from 'react-router-dom';
 
@@ -34,7 +34,7 @@ const Label = styled.label`
   font-size: 0.8em;
   position: relative;
   margin-top: 5%;
-`;
+`
 const Button = styled.button`
     width: 200px;
     background: linear-gradient(purple, red);
@@ -47,6 +47,9 @@ const Button = styled.button`
     border: none;
     background-size: 300% 100%;
     border-radius: 50px;
+    &:hover {
+        background:linear-gradient(red, purple);
+    }
 `
 
 
@@ -67,15 +70,14 @@ return (
         <Form1>
         <h2>Welcome</h2>
         <p>Hello, welcome back please log in</p>
+        
         <Label htmlFor="username">
-                Username / email:               
-                    <Field onclick="borderColor" className= "border" id="username" type="text" name="username" placeholder="username"/>
+                    <Field className= "border" id="username" type="text" name="username" placeholder="username or email"/>
                     {touched.username && errors.username && (
                         <p className="hasError">{errors.username}</p>
                     )}
         </Label>
         <Label htmlFor="password">
-                Password:               
                     <Field className= "border" id="password" type="text" name="password" placeholder="password"/>
                     {touched.password && errors.password && (
                         <p className="hasError">{errors.password}</p>
@@ -84,7 +86,7 @@ return (
         <Button type="submit">LOG IN</Button>
         </Form1>
         <Link to="/register">
-        <button>Don't have an account? Sign Up</button>
+        <button className="button">Don't have an account? Sign Up</button>
         </Link>
         </Display>
     </WholeForm>
@@ -109,6 +111,7 @@ const ForMikLogin = withFormik({
         .required("Password is Required")
     }),
     handleSubmit(values, {setStatus, resetForm}) {
+
         console.log("submitted email:", values.username)
         console.log("submitted password:", values.password)
     }
