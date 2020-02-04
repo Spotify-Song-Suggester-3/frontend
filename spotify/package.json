@@ -7,15 +7,29 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
+<<<<<<< HEAD
     "logger": "^0.0.1",
+=======
+    "bootstrap": "^4.4.1",
+    "formik": "^2.1.3",
+>>>>>>> 4894f6631061746fd5a9d8a51e696ec0e947cc99
     "react": "^16.12.0",
+    "react-animations": "^1.0.0",
     "react-dom": "^16.12.0",
+<<<<<<< HEAD
     "react-redux": "^7.1.3",
     "react-scripts": "3.3.1",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "thunk": "^0.0.1"
+=======
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.3.1",
+    "reactstrap": "^8.4.1",
+    "styled-components": "^5.0.0",
+    "yup": "^0.28.1"
+>>>>>>> 4894f6631061746fd5a9d8a51e696ec0e947cc99
   },
   "scripts": {
     "start": "react-scripts start",

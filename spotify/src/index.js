@@ -8,8 +8,18 @@ import {Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router} from 'react-router-dom';
 import {reducer} from './reducers/index';
+// ReactDOM.render(
+//     <Router>
+//         <App />
+//     </Router>, document.getElementById('root'));
+
+
+
+
+
 
 const store = createStore(reducer, applyMiddleware(thunk, logger))
 
