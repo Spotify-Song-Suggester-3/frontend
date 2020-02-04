@@ -1,11 +1,27 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {fetchSongs} from '../actions';
+import SearchFeed from './SearchFeed';
 
 const BrowsePage = (props)=>{
+const [searchTerm, setSearchTerm] = useState('');
+const searchOnEnter =e =>{
+    if (e.key ==='Enter'){
+        setSearchTerm(e.target.value);
+    }
+}
     console.log('B4 FETCHING',props)
 return (
     <div>
+<h5>Search</h5>
+<input
+type ="text"
+placeholder ="search"
+defaultValue={searchTerm}
+onKeyUp = {searchOnEnter}
+/>
+<SearchFeed term ={searchTerm}/>
+
         <h1>Browse Artists</h1>
         <button onClick ={props.fetchSongs}>Browse</button>
         {!props.gettingSongs && !props.loading &&(<p>Click to browse a chosen selection!</p>)}

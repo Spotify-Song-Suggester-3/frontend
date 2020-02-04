@@ -2,37 +2,46 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchSongs } from '../actions';
 
-const SearchFeed = props =>{
+const SearchFeed = ({...props}) =>{
+    console.log('SEACH',props)
+    // const {term, isFiltering} =props;
 const [filteredSongs, setFilteredSongs] =useState([]);
 
 useEffect (()=>{
-fetchSongs();
-const termLower = term.toLowerCase();
-setFilteredSongs(songs.filter(song =>{
-    if (song.name.toLowerCase().includes(termLower)){
-        return true;
-}
 
-}));
+const termLower = props.term.toLowerCase();
+// setFilteredSongs(props.gettingSongs.tracks.filter(song =>{
+//     if (song.name.toLowerCase().includes(termLower)){
+//         return true;
+// }
 
-},[]);
+// }));
+
+},[props.term, fetchSongs, props.isFiltering]);
 
 if (props.gettingSongs){
     return (<p> fetching songs </p>)
 };
 return(
 <div>
+
+    <h3>Searching...  </h3>
+
     {filteredSongs.length ? (filteredSongs.map((song, id) =>(
         <div>
-        <h3>Title: {song.name}</h3>
-        <p>popularity:{song.popularity}</p>
+             
+            key: {song.id}
+         song:{song.name}
+        
         </div>
     )))
 
 :
 <p>No results</p>
 
+
 }
+
 </div>
 );
 
@@ -43,7 +52,7 @@ return(
 
 
 
-mapStateToProps = state =>{
+const mapStateToProps = state =>{
 return{
     loading: state.loading,
     gettingSongs:state.gettingSongs,
