@@ -1,4 +1,3 @@
-//reducer for fetching of intial songs on BrowsePage (and for filtering songs on search)
 import {
   FETCHING_SONGS_START,
   FETCHING_SONGS_SUCCESS,
@@ -6,6 +5,7 @@ import {
   FILTER_SONGS
 } from "../actions";
 
+//reducer for fetching of intial songs on BrowsePage (and for filtering songs on search)
 const intialState = {
   loading: false,
   isFiltering: false,

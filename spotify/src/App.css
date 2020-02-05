@@ -36,7 +36,6 @@
 .title-container h2 {
   font-size:1.5rem;
 }
-
 .border {
   width: 100%;
   position: relative;
@@ -49,7 +48,6 @@
 .toggled {
   border-bottom: 2px solid lightgreen;
 }
-
 button {
   border: none;
   background-color: white;
@@ -57,16 +55,12 @@ button {
 .button:hover {
   color: red;
 }
-
 .profile-div {
   margin: 3%;
   text-align:center;
 }
 .profile-div label {
   width:100%;
-}
-.fav-container {
-  width:20%;
 }
 .favorites-list {
   border: 1px solid white;

@@ -2,30 +2,30 @@
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import axios from "axios";
 
-export const LOGIN_POST_START = "LOGIN_POST_START";
-export const LOGIN_POST_SUCCESS = "LOGIN_POST_SUCCESS";
-export const LOGIN_POST_FAILURE = "LOGIN_POST_FAILURE";
+// export const LOGIN_POST_START = "LOGIN_POST_START";
+// export const LOGIN_POST_SUCCESS = "LOGIN_POST_SUCCESS";
+// export const LOGIN_POST_FAILURE = "LOGIN_POST_FAILURE";
 
-export const postLogin = value => dispatch => {
-  dispatch({ type: LOGIN_POST_START, payload: value });
-  return axiosWithAuth()
-    .post(`/auth/login`, value)
-    .then(response => {
-      dispatch({
-        type: LOGIN_POST_SUCCESS,
-        payload: response.data
-      });
-      localStorage.setItem("token", JSON.stringify(response.data.token));
-      localStorage.setItem("id", JSON.stringify(response.data.id));
-      localStorage.setItem("username", JSON.stringify(response.data.username));
-    })
-    .catch(error => {
-        dispatch({
-            type: LOGIN_POST_FAILURE,
-            payload: error
-        })
-    })
-};
+// export const postLogin = value => dispatch => {
+//   dispatch({ type: LOGIN_POST_START, payload: value });
+//   return axiosWithAuth()
+//     .post(`/auth/signin`, value)
+//     .then(response => {
+//       dispatch({
+//         type: LOGIN_POST_SUCCESS,
+//         payload: response.data
+//       });
+//       localStorage.setItem("token", JSON.stringify(response.data.token));
+//       localStorage.setItem("id", JSON.stringify(response.data.id));
+//       localStorage.setItem("username", JSON.stringify(response.data.username));
+//     })
+//     .catch(error => {
+//         dispatch({
+//             type: LOGIN_POST_FAILURE,
+//             payload: error
+//         })
+//     })
+// };
 
 //actions for fetching songs for BrowsePage
 

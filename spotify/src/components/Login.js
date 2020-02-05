@@ -5,7 +5,6 @@ import styled, { keyframes } from "styled-components";
 import "../App.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
 
 const WholeForm = styled.div`
   width: 100%;
@@ -53,9 +52,9 @@ const Button = styled.button`
   }
 `;
 
-const Login = ({ values, errors, touched, status }) => {
-  //   const history = useHistory();
 
+
+const Login = ({ values, errors, touched, status }) => {
   return (
     <WholeForm>
       <Display>
@@ -111,7 +110,8 @@ const ForMikLogin = withFormik({
       .max(16)
       .required("Password is Required")
   }),
-  handleSubmit(values, { setStatus, resetForm }) {
+  handleSubmit(values, { props, setStatus, resetForm }) {
+      
     axios
       .post(
         "https://spotify-song-suggester-3.herokuapp.com/api/auth/signin",
@@ -120,7 +120,7 @@ const ForMikLogin = withFormik({
       .then(response => {
         localStorage.setItem("token", response.data.token);
         console.log(response.data);
-        // history.push("/dashboard");
+        props.history.push("/browse");
       })
       .catch(error => console.log(error.response));
     console.log("submitted email:", values.username);
