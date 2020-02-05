@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 import "../App.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Spinner } from "react-spinkit";
 
 const WholeForm = styled.div`
   width: 100%;
@@ -14,7 +13,9 @@ const WholeForm = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(purple, red);
+  background: linear-gradient(-45deg, red, purple, #ff0040, #550a8a);
+  background-size: 400% 400%;
+  animation: gradient 30s ease infinite;
 `;
 const Display = styled.div`
   display: flex;
@@ -34,7 +35,8 @@ const Label = styled.label`
   color: #777;
   font-size: 0.8em;
   position: relative;
-  margin-top: 5%;
+  width: 100%;
+  height: 7vh;
 `;
 const Button = styled.button`
   width: 200px;
@@ -52,6 +54,11 @@ const Button = styled.button`
     background: linear-gradient(red, purple);
   }
 `;
+const Button1 = styled.button`
+  border: none;
+  background-color: white;
+  width: 100%;
+`;
 
 const Register = ({ values, errors, touched, status }) => {
   const [toggled, setToggled] = useState(false);
@@ -60,7 +67,6 @@ const Register = ({ values, errors, touched, status }) => {
   const [emai, setemai] = useState(false);
   const [passwor, setPasswor] = useState(false);
   const [passworComfirm, setPassworComfirm] = useState(false);
-
   return (
     <WholeForm>
       <Display>
@@ -147,7 +153,7 @@ const Register = ({ values, errors, touched, status }) => {
           <Button type="submit">Sign Up</Button>
         </Form>
         <Link to="/">
-          <button className="button">Already have an account? Sign In</button>
+          <Button1 className="button">Already have an account? Sign In</Button1>
         </Link>
       </Display>
     </WholeForm>

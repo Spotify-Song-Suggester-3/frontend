@@ -43,17 +43,13 @@
   border: none !important;
   border-bottom: 2px solid #d9d9d9 !important;
   padding-bottom: 13px !important;
-  margin-top: 5% !important;
+  margin-top: 0% !important;
   outline: none !important;
 }
 .toggled {
   border-bottom: 2px solid lightgreen !important;
 }
 
-button {
-  border: none;
-  background-color: white;
-}
 .hasError {
   color: darkred;
 }
@@ -74,4 +70,15 @@ button {
 .favorites-list {
   border: 1px solid white;
   padding-bottom: 5%;
+}
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

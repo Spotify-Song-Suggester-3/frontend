@@ -10,8 +10,6 @@ function App() {
     <div className="App">
       <Route exact path="/" component={Login} />
       <Route path="/register" component={Register} />
-
-      <Dashboard />
     </div>
   );
 }
