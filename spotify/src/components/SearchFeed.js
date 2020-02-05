@@ -11,14 +11,14 @@ const [filteredSongs, setFilteredSongs] =useState([]);
 
 useEffect (()=>{
     fetchSongs();
-// const termLower = term.toLowerCase();
-// setFilteredSongs(props.songs.tracks.filter(song =>{
-//     if (song.name.toLowerCase().includes(termLower)){
-//         return true;
-// }
-// //name WILL BE TITLE IN DB
-// //ALSO BY ARTIST || song.artist.toLowerCase().includes(termLower))
-// }));
+const termLower = term.toLowerCase();
+setFilteredSongs(props.songs.tracks.filter(song =>{
+    if (song.name.toLowerCase().includes(termLower)){
+        return true;
+}
+//name WILL BE TITLE IN DB
+//ALSO BY ARTIST || song.artist.toLowerCase().includes(termLower))
+}));
 
 },[term, fetchSongs, isFiltering]);
 
