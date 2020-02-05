@@ -22,7 +22,7 @@ return (
         </nav>
 
 
-<div className = "seach-bar">
+<div className = "search-bar">
 <input
 type ="text"
 placeholder ="search"
@@ -35,19 +35,19 @@ onKeyUp = {searchOnEnter}
 <div className = "browse-return-cont">
         <h1>Browse Artists</h1>
         <Button color="primary" onClick ={props.fetchSongs}>Browse</Button> 
-        {!props.isFetching && !props.loading &&(
+        {!props.gettingSongs && !props.loading &&(
 <p>Click to browse a chosen selection!</p>)}
 
 
-        {props.isFetching && !props.loading &&(
+        {props.gettingSongs && !props.loading &&(
 
 <div className = "browse-map-cont">
-     {props.songs.map((song, id) =>{
+     {props.gettingSongs.trackmap((song, id) =>{
                         return(
                             <div className = "browse-songs-return">
-                        
-                    <h3>Artist: {song.tracks.name}</h3>
-                        <p>Title:{song.tracks.popularity}</p>
+                       <p> RETURN </p>
+                    <h3>Artist: {song.tracks.tracks.track.name}</h3>
+                        <p>Title:{song.track.popularity}</p>
 
                         
                         {/*setup for OUR points:
@@ -71,8 +71,8 @@ onKeyUp = {searchOnEnter}
 const mapStateToProps =state =>{
     return{
         loading:state.loading,
-        songs:state.songs,
-        isFetching:state.isFetching,
+        tracks:state.tracks,
+        gettingSongs:state.gettingSongs,
         error:state.error,
         isFiltering:state.isFiltering
     };

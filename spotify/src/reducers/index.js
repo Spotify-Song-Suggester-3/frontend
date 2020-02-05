@@ -3,10 +3,10 @@ import {FETCHING_SONGS_START, FETCHING_SONGS_SUCCESS, FETCHING_SONGS_FAILURE, FI
 
 
 const intialState ={
-    songs:[],
+    tracks:[],
     loading:false,
   isFiltering:false,
-  isFethcing:false,
+  gettingSongs:false,
     error:'',
     userID:'',
     favorites:[]
@@ -19,7 +19,7 @@ export const reducer = (state =intialState, action)=>{
            return{
                ...state, 
                loading:true,
-               isFethcing: true,
+              gettingSongs: true,
                error:'',
                isFiltering:false,
                userID:''
@@ -28,15 +28,15 @@ export const reducer = (state =intialState, action)=>{
             return{
                 ...state,
                 loading:false,
-                songs:action.payload,
-                isFethcing:false,
+                tracks:action.payload,
+                gettingSongs:false,
                 error:''
             };
 
             case FETCHING_SONGS_FAILURE:
                 return{
                     ...state,
-                    isFethcing:false,
+                    gettingSongs:false,
                     error: action.payload
                 }
 
@@ -48,7 +48,7 @@ export const reducer = (state =intialState, action)=>{
                 case FILTER_SONGS:
                     return{
                         ...state, 
-                        isFethcing:action.payload,
+                       gettingSongs:action.payload,
                         isFiltering:true
                     }
 

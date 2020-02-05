@@ -11,14 +11,14 @@ const [filteredSongs, setFilteredSongs] =useState([]);
 
 useEffect (()=>{
     fetchSongs();
-const termLower = term.toLowerCase();
-setFilteredSongs(props.songs.tracks.filter(song =>{
-    if (song.name.toLowerCase().includes(termLower)){
-        return true;
-}
-//name WILL BE TITLE IN DB
-//ALSO BY ARTIST || song.artist.toLowerCase().includes(termLower))
-}));
+//     console.log('FETCH SONGS SEARCH',fetchSongs())
+// const termLower = term.toLowerCase();
+// setFilteredSongs(songs.filter(song =>{
+//     if (song.name.toLowerCase().includes(termLower)){
+//         return true;
+// }
+
+// }));
 
 },[term, fetchSongs, isFiltering]);
 
@@ -28,7 +28,7 @@ if (props.isFetching){
 
 return(
 <div>
-<div className = "searc-title"></div>
+<div className = "search-title"></div>
 
 
     {filteredSongs.length ? (filteredSongs.map((song, id) =>(
@@ -58,8 +58,8 @@ return(
 
 const mapStateToProps = state =>{
 return{
-    songs: state.songs,
-    isFetching:state.isFetching,
+    tracks: state.tracks,
+    gettingSongs:state.gettingSongs,
     error:state.error,
     isFiltering:state.isFiltering
 }

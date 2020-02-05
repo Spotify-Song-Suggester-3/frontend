@@ -9,7 +9,7 @@ function Dashboard() {
 
   useEffect(() => {
     axiosWithAuth()
-    .get('/songs')
+    .get('/auth/songs')
       // .get("https://spotify-song-suggester-3.herokuapp.com/api/songs")
       .then(response => {
         console.log("favorites get request", response.data);
