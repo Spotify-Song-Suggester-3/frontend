@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchSongs } from '../actions';
-
+import {filterSongs} from '../actions';
 const SearchFeed = ({fetchSongs, ...props}) =>{
     const {term, songs, isFiltering} =props;
     console.log('SEARCH PROPS',props)
@@ -9,16 +9,21 @@ const SearchFeed = ({fetchSongs, ...props}) =>{
 const [filteredSongs, setFilteredSongs] =useState([]);
 
 
+
+
 useEffect (()=>{
-    fetchSongs();
-//     console.log('FETCH SONGS SEARCH',fetchSongs())
+
+//     console.log('FETCH SONGS SEARCH')
 // const termLower = term.toLowerCase();
-// setFilteredSongs(songs.filter(song =>{
+// setFilteredSongs(props.gettingSongs.tracks.filter(song =>{
 //     if (song.name.toLowerCase().includes(termLower)){
 //         return true;
 // }
 
 // }));
+
+
+
 
 },[term, fetchSongs, isFiltering]);
 
@@ -29,6 +34,8 @@ if (props.isFetching){
 return(
 <div>
 <div className = "search-title"></div>
+
+
 
 
     {filteredSongs.length ? (filteredSongs.map((song, id) =>(
@@ -65,4 +72,4 @@ return{
 }
 
 }
-export default connect(mapStateToProps, {fetchSongs})(SearchFeed)
+export default connect(mapStateToProps, {filterSongs})(SearchFeed)

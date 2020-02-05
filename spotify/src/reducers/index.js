@@ -19,7 +19,7 @@ export const reducer = (state =intialState, action)=>{
            return{
                ...state, 
                loading:true,
-              gettingSongs: true,
+              gettingSongs: null,
                error:'',
                isFiltering:false,
                userID:''
@@ -28,8 +28,7 @@ export const reducer = (state =intialState, action)=>{
             return{
                 ...state,
                 loading:false,
-                tracks:action.payload,
-                gettingSongs:false,
+                gettingSongs:action.payload,
                 error:''
             };
 

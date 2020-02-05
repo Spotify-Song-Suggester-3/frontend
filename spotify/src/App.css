@@ -1,4 +1,4 @@
-/* .App {
+.App {
   text-align: center;
   min-height:100vh;
   background-image: url('./images/dashboard-background.jpg');
@@ -71,10 +71,11 @@ button {
 .favorites-list {
   border: 1px solid white;
   padding-bottom:5%;
-} */
+} 
 
-/********************Browse page CSS********************/
-/* 
+/*******************Browse page CSS*******************/
+
+
 .browse-return-cont{
   border-radius:25px;
   padding:2%;
@@ -82,4 +83,4 @@ button {
   background-image: linear-gradient(purple, red);
 
 }
- */
+
