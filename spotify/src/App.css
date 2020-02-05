@@ -82,5 +82,20 @@ button {
   color:white;
   background-image: linear-gradient(purple, red);
 
+  
+
+}
+
+.browse-cont{
+  padding:5%
+}
+
+.browse-header{
+  background-color: #282c34;
+  margin-bottom: 5%;
+  padding: 0;
+  border-radius: 25px;
+  display:flex;
+  justify-content: space-evenly;
 }
 

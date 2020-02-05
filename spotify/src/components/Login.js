@@ -122,7 +122,7 @@ const ForMikLogin = withFormik({
         localStorage.setItem("token", res.data.token);
         console.log("LOGIN RES",res.data);
         props.setUserID(Date.now())
-        console.log("LOGIN USER ID",Date.now())
+        console.log("LOGIN USER ID",res.data)
         props.history.push("/dashboard")
       })
       .catch(error => console.log(error.response));

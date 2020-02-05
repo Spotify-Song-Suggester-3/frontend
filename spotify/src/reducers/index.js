@@ -3,7 +3,7 @@ import {FETCHING_SONGS_START, FETCHING_SONGS_SUCCESS, FETCHING_SONGS_FAILURE, FI
 
 
 const intialState ={
-    tracks:[],
+   
     loading:false,
   isFiltering:false,
   gettingSongs:false,
