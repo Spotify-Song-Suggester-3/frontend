@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import {Button} from 'reactstrap';
-<<<<<<< HEAD
-import { Link, Switch, Route} from 'react-router-dom';
-=======
-import {axiosWithAuth} from '../utils/axiosWithAuth';
+import axiosWithAuth from '../utils/axiosWithAuth';
 import axios from 'axios';
-
->>>>>>> 68fc6c8e87d9e92567b34188ef3557c76aedcb07
+import {Link} from 'react-router-dom';
 function Dashboard() {
 
   const [favorites, setFavorites] = useState([]);

@@ -2,8 +2,13 @@ import React, { useState, useEffect } from "react";
 import { withFormik, Form as Form1, Field } from "formik";
 import * as Yup from "yup";
 import styled, { keyframes } from "styled-components";
-import '../App.css';
-import { Link } from 'react-router-dom';
+import "../App.css";
+import { Link } from "react-router-dom";
+// import axios from "axios";
+import { useHistory } from "react-router-dom";
+import {connect} from "react-redux";
+import axiosWithAuth from "../utils/axiosWithAuth";
+import {setUserID} from "../actions/index";
 
 const WholeForm = styled.div`
   width: 100%;
@@ -96,28 +101,34 @@ const Login = ({ values, errors, touched, status }) => {
 };
 
 const ForMikLogin = withFormik({
-    mapPropsToValues({ username, password}){
-        return {
-            username: username || "",
-            password: password || ""
-        }
-    },
-    validationSchema: Yup.object().shape({
-        username: Yup
-        .string()
-        .required("Name is Required"),
-        password: Yup
-        .string()
-        .min(8)
-        .max(16)
-        .required("Password is Required")
+  mapPropsToValues: ({ username, password })=>({
+    
+      username: username || "",
+      password: password || ""
     }),
-    handleSubmit(values, {props, setStatus, resetForm}) {
-   
-
-        console.log("submitted email:", values.username)
-        console.log("submitted password:", values.password)
-    }
+  
+  validationSchema: Yup.object().shape({
+    username: Yup.string().required("Name is Required"),
+    password: Yup.string()
+    //   .min(8)
+    //   .max(16)
+      .required("Password is Required")
+  }),
+  handleSubmit(values, { props, setStatus, resetForm }) {
+    axiosWithAuth()
+      .post(
+        "/auth/signin", values)
+      .then(res => {
+        localStorage.setItem("token", res.data.token);
+        console.log("LOGIN RES",res.data);
+        props.setUserID(res.data.user_id)
+        console.log("LOGIN USER ID",res.data.user_id)
+        props.history.push("/dashboard")
+      })
+      .catch(error => console.log(error.response));
+    // console.log("submitted email:", values.username);
+    // console.log("submitted password:", values.password);
+  }
 })(Login);
 
-export default ForMikLogin;
+export default connect (null, {setUserID})(ForMikLogin);

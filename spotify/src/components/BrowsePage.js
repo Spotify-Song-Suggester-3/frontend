@@ -17,8 +17,8 @@ return (
 
         <nav>
     <a href = "/dashboard">Home </a>
-    <a href = '/'>Logout</a>
-<a hrerf = "/browse">Search</a>
+    <a href = "/">Logout </a>
+    <a hrerf = "#"> Search</a>
         </nav>
 
 
@@ -42,12 +42,12 @@ onKeyUp = {searchOnEnter}
         {props.isFetching && !props.loading &&(
 
 <div className = "browse-map-cont">
-     {props.isFetching.tracks.map((song, id) =>{
+     {props.songs.map((song, id) =>{
                         return(
                             <div className = "browse-songs-return">
                         
-                    <h3>Artist: {song.name}</h3>
-                        <p>Title:{song.popularity}</p>
+                    <h3>Artist: {song.tracks.name}</h3>
+                        <p>Title:{song.tracks.popularity}</p>
 
                         
                         {/*setup for OUR points:

@@ -6,7 +6,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import { Route, Link, Switch} from "react-router-dom";
 import { BrowserRouter as Router} from 'react-router-dom';
-import Privateroute from './routes/PrivateRoute';
+import PrivateRoute from './routes/PrivateRoute';
 
 function App() {
   return (
@@ -14,8 +14,8 @@ function App() {
     <div className="App">
       <Route exact path = '/' component={Login} />
       <Route path = '/register' component={Register}/>
-      <Route path = '/browse' component={BrowsePage}/>
-      <Route path = '/dashboard' component={Dashboard}/>
+      <PrivateRoute path = '/browse' component={BrowsePage}/>
+      <PrivateRoute path = '/dashboard' component={Dashboard}/>
       {/* <PrivateRoute exact path='/dashboard' component={Dashboard} /> /> */}
 
     </div>

@@ -1,4 +1,4 @@
-/* .App {
+.App {
   text-align: center;
   min-height:100vh;
   background-image: url('./images/dashboard-background.jpg');
@@ -13,7 +13,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-} */
+}
 .dashboard-container {
   display:flex;
   justify-content:space-evenly;

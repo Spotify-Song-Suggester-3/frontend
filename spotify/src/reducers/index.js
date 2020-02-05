@@ -28,7 +28,8 @@ export const reducer = (state =intialState, action)=>{
             return{
                 ...state,
                 loading:false,
-                isFethcing:action.payload,
+                songs:action.payload,
+                isFethcing:false,
                 error:''
             };
 
