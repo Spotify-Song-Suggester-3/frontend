@@ -4,6 +4,8 @@ import {fetchSongs} from '../actions';
 import SearchFeed from './SearchFeed';
 import {Button, Fade, Card} from 'reactstrap';
 import axiosWithAuth from '../utils/axiosWithAuth';
+import { Link } from "react-router-dom";
+
 const BrowsePage = (props)=>{
 // const [searchTerm, setSearchTerm] = useState('');
 
@@ -18,12 +20,15 @@ const addSong = (song, userID) =>{
     axiosWithAuth()
     .post( 'https://reqres.in/api/users', {
 // user_id: parseInt(userID),
-// song_id: song.id
+// song_id: song.id,
+// favorites:[]
 
 })
 .then (res =>{
     console.log('FAV ADD RES', res)
     alert('songs added to favorites')
+    // favorites(res.data)
+    console.log('TO ADD TO FAV',res.data)
 })
 .catch(err=>alert(err))
 }
@@ -33,9 +38,9 @@ return (
     <div className = "browse-cont">
 
         <nav>
-    <a href = "/dashboard">Home </a>
-    <a href = "/">Logout </a>
-    {/* <a hrerf = "#"> Search</a> */}
+    <Link to = {`/dashboard`}>Home </Link>
+    <Link to = {`/`}>Logout </Link>
+    {/* <Link to = "#"> Search</Link> */}
         </nav>
 {/* 
 

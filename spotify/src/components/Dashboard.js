@@ -9,15 +9,15 @@ function Dashboard() {
 
   useEffect(() => {
     axiosWithAuth()
-    .get('/auth/songs')
-      // .get("https://spotify-song-suggester-3.herokuapp.com/api/songs")
-      .then(response => {
-        console.log("favorites get request", response.data);
-        setFavorites(response.data);
-      })
-      .catch(error => {
-        console.log("error from server:", error);
-      });
+    
+    // .get("https://spotify-song-suggester-3.herokuapp.com/api/songs")
+    //   .then(response => {
+    //     console.log("favorites get request", response.data);
+    //     setFavorites(response.data);
+    //   })
+    //   .catch(error => {
+    //     console.log("error from server:", error);
+    //   });
   }, []);
 
   return (
