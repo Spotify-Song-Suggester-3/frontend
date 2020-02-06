@@ -23,7 +23,7 @@ const Display = styled.div`
   align-items: center;
   justify-content: space-between;
   border: 1px solid black;
-  width: 500px;
+  width: 600px;
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
@@ -35,6 +35,7 @@ const Label = styled.label`
   color: #777;
   font-size: 0.8em;
   position: relative;
+  margin-top: 2%;
   width: 100%;
   height: 7vh;
 `;
