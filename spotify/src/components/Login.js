@@ -56,13 +56,14 @@ const Button = styled.button`
   }
 `;
 
-const Login = ({ values, errors, touched, status }) => {
+const Login = ({ values, errors, touched, status, handleSubmit }) => {
   //   const history = useHistory();
+
 
   return (
     <WholeForm>
       <Display>
-        <Form1>
+        <Form1 onSubmit = {handleSubmit}>
           <h2>Welcome</h2>
           <p>Hello, welcome back please log in</p>
 
@@ -117,11 +118,11 @@ const ForMikLogin = withFormik({
   handleSubmit(values, { props, setStatus, resetForm }) {
     axiosWithAuth()
       .post(
-        "/auth/signin", values)
+        '/auth/login', values)
       .then(res => {
         localStorage.setItem("token", res.data.token);
         console.log("LOGIN RES",res.data);
-        props.setUserID(Date.now())
+        props.setUserID(res.data.id);
         console.log("LOGIN USER ID",res.data)
         props.history.push("/dashboard")
       })

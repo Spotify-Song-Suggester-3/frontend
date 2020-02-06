@@ -1,6 +1,5 @@
 //actions for fetching songs for BrowsePage
-
-import axios from 'axios';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 export const FETCHING_SONGS_START ='FETCHING_SONGS_START';
 export const FETCHING_SONGS_SUCCESS= 'FETCHING_SONGS_SUCCESS';
@@ -9,8 +8,8 @@ export const FILTER_SONGS ='FILTER_SONGS';
 export const SET_USER_ID = 'SET_USER_ID';
 export const fetchSongs =()=>dispatch=>{
     dispatch({type:FETCHING_SONGS_START})
-    axios
-    .get('https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg/top-tracks?country=US')
+    axiosWithAuth()
+    .get('/songs')
     .then(res=>{
         console.log('FETCHSONGS',res)
         dispatch({type:FETCHING_SONGS_SUCCESS, payload:res.data})

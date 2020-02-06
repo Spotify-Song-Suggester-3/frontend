@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import {fetchSongs} from '../actions';
 import SearchFeed from './SearchFeed';
@@ -6,9 +6,9 @@ import {Button, Card,CardText, CardTitle, CardBody} from 'reactstrap';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { Link } from "react-router-dom";
 
-const BrowsePage = (props)=>{
+const BrowsePage = (props) =>{
 // const [searchTerm, setSearchTerm] = useState('');
-
+const {userID} = props;
 
 // const searchOnEnter =e =>{
 //     if (e.key ==='Enter'){
@@ -17,26 +17,29 @@ const BrowsePage = (props)=>{
 // }
 
 const addSong = (song, userID) =>{
+    
     axiosWithAuth()
-    .post( 'https://reqres.in/api/users', {
-// user_id: parseInt(userID),
-// song_id: song.id,
+    .post( '/songs/save', {
+user_id: parseInt(userID),
+song_id: song.id,
 // favorites:[]
 
 })
+
 
 //may have to use song_id as param in post
 .then (res =>{
     console.log('FAV ADD RES', res)
     alert('songs added to favorites')
-    // favorites(res.data)
     console.log('TO ADD TO FAV',res.data)
 })
-.catch(err=>alert(err))
+.catch(err=>{alert(err)
+});
+
 }
 
-
 return (
+
     <div className = "browse-cont">
 
         <div className = "browse-header">
@@ -66,7 +69,7 @@ onKeyUp = {searchOnEnter}
 
 <div className = "browse-map-cont">
 <h2>Add a few songs to your favorites!</h2>
-     {props.gettingSongs.tracks.map((song, id ) =>{
+     {props.songs.map((song, id ) =>{
       
                         return(
 
@@ -75,8 +78,8 @@ onKeyUp = {searchOnEnter}
                 
                     <Card body inverse style={{ backgroundColor: 'transparent', borderColor: '#333' }}>
                      <CardBody>
-                    <CardTitle>Track: {song.name} </CardTitle>
-                        <CardText>Popular:{song.popularity}
+                    <CardTitle>Artist {song.artist} </CardTitle>
+                        <CardText>Track:{song.track}
                         </CardText>
                       
                         
@@ -85,7 +88,7 @@ onKeyUp = {searchOnEnter}
                         Title{song.song_title},
                         Artist{song.artist},
                         favorite{song.favorite} */}
-                        <Button color ="secondary" onClick = {()=>addSong()}>Save.</Button>
+                        <Button color ="secondary" onClick = {()=>addSong(song, userID)}>Save.</Button>
                         </CardBody>
                     </Card>
                 
@@ -99,12 +102,11 @@ onKeyUp = {searchOnEnter}
 </div>
 )
 
-
 }
 
 const mapStateToProps =state =>{
     return{
-        loading:state.loading,
+         songs:state.songs,
         gettingSongs:state.gettingSongs,
         error:state.error,
         isFiltering:state.isFiltering,

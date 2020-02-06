@@ -3,7 +3,7 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 import "../App.css";
-import axios from "axios";
+// import axios from "axios";
 import { Link } from "react-router-dom";
 import { Spinner } from "react-spinkit";
 import axiosWithAuth from '../utils/axiosWithAuth';
@@ -61,12 +61,22 @@ const Register = ({ values, errors, touched, status }) => {
   const [passwor, setPasswor] = useState(false);
   const [passworComfirm, setPassworComfirm] = useState(false);
 
+  const [users, setUsers] = useState([]);
+         useEffect(() => {
+
+        status && setUsers(users => [
+            ...users, status
+        ]);
+    }, [status]);
+
+
+
   return (
     <WholeForm>
       <Display>
         <Form>
           <h2>Register</h2>
-          <Label htmlFor="firstName">
+          {/* <Label htmlFor="firstName">
             <Field
               onSelect={() => setToggled(!toggled)}
               className={`border ${toggled ? "toggled" : ""}`}
@@ -91,7 +101,7 @@ const Register = ({ values, errors, touched, status }) => {
             {touched.lastName && errors.lastName && (
               <p className="hasError">{errors.lastName}</p>
             )}
-          </Label>
+          </Label> */}
           <Label htmlFor="username">
             <Field
               onSelect={() => setUsernam(!usernam)}
@@ -131,7 +141,7 @@ const Register = ({ values, errors, touched, status }) => {
               <p className="hasError">{errors.password}</p>
             )}
           </Label>
-          <Label htmlFor="passwordconfirm">
+          {/* <Label htmlFor="passwordconfirm">
             <Field
               onSelect={() => setPassworComfirm(!passworComfirm)}
               className={`border ${passworComfirm ? "toggled" : ""}`}
@@ -143,7 +153,7 @@ const Register = ({ values, errors, touched, status }) => {
             {touched.passwordconfirm && errors.passwordconfirm && (
               <p className="hasError">{errors.passwordconfirm}</p>
             )}
-          </Label>
+          </Label> */}
           <Button type="submit">Sign Up</Button>
         </Form>
         <Link to="/">
@@ -156,42 +166,42 @@ const Register = ({ values, errors, touched, status }) => {
 
 const ForMikRegister = withFormik({
   mapPropsToValues({
-    firstName,
-    lastName,
+    // firstName,
+    // lastName,
     username,
     email,
     password,
-    passwordconfirm
+    // passwordconfirm
   }) {
     return {
-      firstName: firstName || "",
-      lastName: lastName || "",
+      // firstName: firstName || "",
+      // lastName: lastName || "",
       username: username || "",
       email: email || "",
       password: password || "",
-      passwordconfirm: passwordconfirm || ""
+      // passwordconfirm: passwordconfirm || ""
     };
   },
   validationSchema: Yup.object().shape({
-    firstName: Yup.string().required("First Name is Required"),
-    lastName: Yup.string().required("Last Name is Required"),
+    // firstName: Yup.string().required("First Name is Required"),
+    // lastName: Yup.string().required("Last Name is Required"),
     username: Yup.string().required("Username is Required"),
     email: Yup.string()
       .email()
       .required("Email is Required"),
     password: Yup.string()
-      .min(8)
-      .max(16)
+      // .min(8)
+      // .max(16)
       .required("Password is Required"),
-    passwordconfirm: Yup.string().oneOf(
-      [Yup.ref("password"), null],
-      "Passwords must match"
-    )
+    // passwordconfirm: Yup.string().oneOf(
+    //   [Yup.ref("password"), null],
+    //   "Passwords must match"
+    // )
   }),
   handleSubmit(values, { props, setStatus, resetForm }) {
     console.log("submitting", values);
     axiosWithAuth()
-      .post("/auth/signup",values)
+      .post('/auth/register',values)
       .then(res => {
         setStatus(res.data);
         resetForm();
@@ -199,12 +209,12 @@ const ForMikRegister = withFormik({
         console.log("REGISTER",res);
       })
       .catch(error => console.log(error.res));
-    console.log("submitted First name:", values.firstName);
-    console.log("submitted Last name:", values.lastName);
-    console.log("submitted email:", values.email);
-    console.log("submitted username:", values.username);
-    console.log("submitted password:", values.password);
-    console.log("password matches:", values.passwordconfirm);
+    // console.log("submitted First name:", values.firstName);
+    // console.log("submitted Last name:", values.lastName);
+    // console.log("submitted email:", values.email);
+    // console.log("submitted username:", values.username);
+    // console.log("submitted password:", values.password);
+    // console.log("password matches:", values.passwordconfirm);
   }
 })(Register);
 
