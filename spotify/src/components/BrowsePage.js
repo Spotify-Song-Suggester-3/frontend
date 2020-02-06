@@ -22,6 +22,7 @@ const addSong =()=>{
     // .post ('https://reqres.in/api/users/', favSongs)
     // .then(res=>{
     // console.log('POST RES',res)
+        //get song by id? set res. then push onto fav array?****
         
         setFavSongs(props.favorites.push.favSongs)
         alert('Song Added!')

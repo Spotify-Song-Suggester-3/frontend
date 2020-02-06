@@ -58,54 +58,13 @@ const {userID} = useParams;
         </Link>
         
       </div>
-      <div className = "edit">
-      <EditForm/>
-      </div>
-    
-      {/* <div className="dashboard-container">
-        <div className="split-container">
+      <div className="dashboard-container">
+      <div className="split-container">
           <h2>Welcome (username)</h2>
           <p>Edit Your Profile Here</p>
-       
-          <form onSubmit = {handleSubmit} className="profile-form">
-            <div className="profile-div">
-              <label>Username: </label>
-              <input 
-               type="text"
-               placeholder = "username"
-               name = "username"
-               value = {edit.username}
-               onChange = {handleChanges}/>
-            </div>
-            <div className="profile-div">
-              <label>Password: </label>
-              <input 
-                type="text"
-                placeholder = "password"
-                name = "password"
-                value = {edit.password}
-                onChange = {handleChanges}/>
-            </div>
-            <div className="profile-div">
-              <label>First Name: </label>
-              <input />
-            </div>
-            <div className="profile-div">
-              <label>Last Name: </label>
-              <input />
-            </div>
-            <div className="profile-div">
-              <label>E-Mail: </label>
-              <input
-                  type="text"
-                  placeholder = "email"
-                  name = "email"
-                  value = {edit.email}
-                  onChange = {handleChanges} />
-            </div>
-          </form>
-          <Button className="profile-div" color="primary">Submit</Button>
-        </div> */}
+      <EditForm/>
+      </div>
+      </div>
         <div className="split-container fav-container">
         <h2>Favorite Songs List</h2>
           <div className="favorites-list">

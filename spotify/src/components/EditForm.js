@@ -31,12 +31,12 @@ const {userID} = useParams();
 
   return (
   
-        <Form>
+        <Form className = "profile-form">
           <h2>Edit Your Profile!</h2>
          
             <Field
               onFocus={() => setToggled(!toggled)}
-              className={`border ${toggled ? "toggled" : ""}`}
+              className= "profile-div"
               id="firstName"
               type="text"
               name="firstName"
@@ -48,7 +48,7 @@ const {userID} = useParams();
          
             <Field
               onFocus={() => setLastname(!lastname)}
-              className={`border ${lastname ? "toggled" : ""}`}
+              className="profile-div"
               id="lastName"
               type="text"
               name="lastName"
@@ -60,7 +60,7 @@ const {userID} = useParams();
           
             <Field
               onFocus={() => setUsernam(!usernam)}
-              className={`border ${usernam ? "toggled" : ""}`}
+              className="profile-div"
               id="username"
               type="text"
               name="username"
@@ -72,7 +72,7 @@ const {userID} = useParams();
           
             <Field
               onFocus={() => setemai(!emai)}
-              className={`border ${emai ? "toggled" : ""}`}
+              className="profile-div"
               id="email"
               type="text"
               name="email"
@@ -84,7 +84,7 @@ const {userID} = useParams();
         
             <Field
               onFocus={() => setPasswor(!passwor)}
-              className={`border ${passwor ? "toggled" : ""}`}
+              className="profile-div"
               id="password"
               type="text"
               name="password"
@@ -135,7 +135,7 @@ const FormikUpdateForm = withFormik({
     //   "Passwords must match"
     // )
   }),
-  
+ 
   handleSubmit(values, { props, setStatus, resetForm }) {
     console.log("submitting", values);
   
@@ -145,7 +145,7 @@ const FormikUpdateForm = withFormik({
         // setStatus(res.data);
        console.log(res.data)
         // props.history.push('/');
-        console.log("UPDATED",res);
+        console.log("UPDATED PROFILE",res);
       })
       .catch(error => console.log(error.res));
     console.log("submitted First name:", values.firstName);
