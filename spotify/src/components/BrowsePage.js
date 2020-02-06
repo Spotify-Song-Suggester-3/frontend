@@ -8,14 +8,9 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 
 const BrowsePage = (props) =>{
-// const [searchTerm, setSearchTerm] = useState('');
 const {userID} = props;
 
-// const searchOnEnter =e =>{
-//     if (e.key ==='Enter'){
-//         setSearchTerm(e.target.value);
-//     }
-// }
+
 
 const [favSongs, setFavSongs] = useState({
     title:'',
@@ -29,7 +24,7 @@ const addSong =()=>{
     console.log('POST RES',res)
         const songArr = [];
         setFavSongs(songArr.push(res.data))
-        console.log('SONG ARRAY', songArr)
+        alert('Song Added!')
                
     })
     }
@@ -40,20 +35,12 @@ return (
 
         <div className = "browse-header">
     <Link to = {`/dashboard`}>Home </Link>
+    <Link to = {`/search`}>Search </Link>
     <Link to = {`/`}>Logout </Link>
-    {/* <Link to = "#"> Search</Link> */}
-        </div>
-{/* 
 
-// <div className = "search-bar">
-// <input
-// type ="text"
-// placeholder ="search"
-// defaultValue={searchTerm}
-// onKeyUp = {searchOnEnter}
-// />
-// <SearchFeed term ={searchTerm}/>
-// </div> */}
+        </div>
+
+
 
 <div className = "browse-return-cont">
          <Button color="primary" onClick ={props.fetchSongs}>Browse</Button> 

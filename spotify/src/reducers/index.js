@@ -43,13 +43,7 @@ export const reducer = (state =intialState, action)=>{
                 ...state,
                 userID: action.payload
             }
-                // case FILTER_SONGS:
-                //     return{
-                //         ...state, 
-                //        gettingSongs:action.payload,
-                //         isFiltering:true
-                //     }
-
+                
                 default:
                     return state
 

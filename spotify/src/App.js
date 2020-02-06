@@ -7,7 +7,7 @@ import Register from "./components/Register";
 import { Route, Link, Switch} from "react-router-dom";
 import { BrowserRouter as Router} from 'react-router-dom';
 import PrivateRoute from './routes/PrivateRoute';
-
+import SearchFeed from './components/SearchFeed';
 function App() {
   return (
     <Router>
@@ -16,7 +16,7 @@ function App() {
       <Route path = '/register' component={Register}/>
       <PrivateRoute path = '/browse' component={BrowsePage}/>
       <PrivateRoute path = '/dashboard' component={Dashboard}/>
-      {/* <PrivateRoute exact path='/dashboard' component={Dashboard} /> /> */}
+      <PrivateRoute path='/search' component={SearchFeed} />
 
     </div>
     </Router>

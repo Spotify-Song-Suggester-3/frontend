@@ -26,6 +26,7 @@ const {userID} = props;
     const handleSubmit = e =>{
       e.preventDefault();
       setEdit(edit);
+      
       axios
       .post(
         'https://reqres.in/api/users/', edit)

@@ -1,71 +1,80 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchSongs } from '../actions';
+import {Link} from 'react-router-dom';
 import {filterSongs} from '../actions';
-const SearchFeed = ({fetchSongs, ...props}) =>{
-    const {term, songs, isFiltering} =props;
-    console.log('SEARCH PROPS',props)
-  
-const [filteredSongs, setFilteredSongs] =useState([]);
+import axios from 'axios';
+const SearchFeed = (props) =>{
 
+    const [names, setNames] = useState([]);
+    const [query, setQuery] = useState("");
+    useEffect(() => {
+      axios
+        .get(`https://www.songsterr.com/a/ra/songs/byartists.json?artists=Beyonce`)
+        .then(response => {
+          const search = response.data;
+          console.log(search);
+          const result = search.filter(song =>
+          
+            song.title
+              .toLowerCase()
+              .includes(query.toLowerCase())
+          );
+          setNames(result);
+        });
 
-
-
-useEffect (()=>{
-
-//     console.log('FETCH SONGS SEARCH')
-// const termLower = term.toLowerCase();
-// setFilteredSongs(props.gettingSongs.tracks.filter(song =>{
-//     if (song.name.toLowerCase().includes(termLower)){
-//         return true;
-// }
-
-// }));
-
-
-
-
-},[term, fetchSongs, isFiltering]);
-
-if (props.isFetching){
-    return (<p> fetching songs </p>)
-};
-
-return(
-<div>
-<div className = "search-title"></div>
-
-
-
-
-    {filteredSongs.length ? (filteredSongs.map((song, id) =>(
-        <div className = "search-bar">
-             
-            key:{song.id}
-         song:{song.name}
         
+    }, [query]);
+    const handleInputChange = event => {
+      setQuery(event.target.value);
+    };
+  
+    return (
+     
+    
+      <div className="browse-return-cont">
+              <div className = "browse-header">
+    <Link to = {`/dashboard`}>Home </Link>
+    <Link to = {`/search`}>Search </Link>
+    <Link to = {`/`}>Logout </Link>
+
         </div>
-    )))
-
-:
-<p>No results</p>
-
-
-}
-
-</div>
-);
-
-}
-
-
-
-
+            <h1>Search Through Our Full Collection!</h1>
+        <form className="search-form">
+          <input
+            type="text"
+            onChange={handleInputChange}
+            value={query}
+            name="name"
+            tabIndex="0"
+            className="prompt search-name"
+            placeholder="search by song name"
+            autoComplete="off"
+          />
+        </form>
+        <div className="search-return">
+          {names.map(name => {
+            return (
+              <div
+                className="char-search"
+                key={name.id}
+              >
+                <p>
+                 
+                  {name.title}
+                </p>
+               
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
 
 
 const mapStateToProps = state =>{
 return{
-    tracks: state.tracks,
+ loading:state.loading,
     gettingSongs:state.gettingSongs,
     error:state.error,
     isFiltering:state.isFiltering
