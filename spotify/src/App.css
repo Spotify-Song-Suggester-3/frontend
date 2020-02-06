@@ -36,7 +36,6 @@
 .title-container h2 {
   font-size: 1.5rem;
 }
-
 .border {
   width: 100% !important;
   position: relative !important;
@@ -49,23 +48,18 @@
 .toggled {
   border-bottom: 2px solid lightgreen !important;
 }
-
 .hasError {
   color: darkred;
 }
 .button:hover {
   color: red;
 }
-
 .profile-div {
   margin: 3%;
   text-align: center;
 }
 .profile-div label {
   width: 100%;
-}
-.fav-container {
-  width: 20%;
 }
 .favorites-list {
   border: 1px solid white;

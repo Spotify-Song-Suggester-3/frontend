@@ -1,13 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import {Button} from 'reactstrap';
+import {axiosWithAuth} from '../utils/axiosWithAuth';
+// import axios from 'axios';
+import {Link} from "react-router-dom";
 
 function Dashboard() {
+
+  const [favorites, setFavorites] = useState([]);
+
+  useEffect(() => {
+    axiosWithAuth()
+    .get('/songs')
+      // .get("https://spotify-song-suggester-3.herokuapp.com/api/songs")
+      .then(response => {
+        console.log("favorites get request", response.data);
+        setFavorites([...favorites, response.data]);
+      })
+      .catch(error => {
+        console.log("error from server:", error);
+      });
+  }, []);
+
   return (
     <div>
       <h1 className="App-header">Welcome To Your Dashboard</h1>
       <div className="title-container">
         <h2>Let's Find Some New Music!</h2>
+        <Link to ='/browse'>
         <Button color="primary">Browse</Button>
+        </Link>
       </div>
       <div className="dashboard-container">
         <div className="split-container">

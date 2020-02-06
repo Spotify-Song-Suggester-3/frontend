@@ -67,6 +67,8 @@ const H1 = styled.h1`
   width: 100%;
 `;
 
+
+
 const Login = ({ values, errors, touched, status }) => {
   const [usernam, setUsernam] = useState(false);
   const [passwor, setPasswor] = useState(false);
@@ -128,15 +130,17 @@ const ForMikLogin = withFormik({
       .max(16)
       .required("Password is Required")
   }),
-  handleSubmit(values, { setStatus, resetForm }) {
+  handleSubmit(values, { props, setStatus, resetForm }) {
+      
     axios
       .post(
         "https://spotify-song-suggester-3.herokuapp.com/api/auth/signin",
         values
       )
       .then(response => {
+        localStorage.setItem("token", response.data.token);
         console.log(response.data);
-        console.log(response);
+        props.history.push("/browse");
       })
       .catch(error => {
         console.log(error.response);

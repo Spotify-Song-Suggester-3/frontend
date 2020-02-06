@@ -195,7 +195,7 @@ const ForMikRegister = withFormik({
       "Passwords must match"
     )
   }),
-  handleSubmit(values, { setStatus, resetForm }) {
+  handleSubmit(values, { props, setStatus, resetForm }) {
     console.log("submitting", values);
     axios
       .post(
@@ -203,6 +203,7 @@ const ForMikRegister = withFormik({
         values
       )
       .then(response => {
+        props.history.push('/browse')
         console.log(response.data);
         console.log(response);
       })
