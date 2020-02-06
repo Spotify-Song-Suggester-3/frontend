@@ -16,14 +16,23 @@ const {userID} = props;
 //     }
 // }
 
+
+const [favSongs, setFavSongs] = useState({
+    title:'',
+    Artist: 'Beyonce'
+
+});
+
+
+
 const addSong =()=>{
 axios
-.post ('https://reqres.in/api/users/')
+.post ('https://reqres.in/api/users/', favSongs)
 .then(res=>{
 console.log('POST RES',res)
 
     const songArr = [];
-    songArr.push(res.data)
+    setFavSongs(songArr.push(res.data))
     console.log('SONG ARRAY', songArr)
         
     
@@ -36,8 +45,8 @@ return (
     <div className = "browse-cont">
 
         <div className = "browse-header">
-    <Link to = {`/dashboard`}>Home </Link>
-    <Link to = {`/`}>Logout </Link>
+    <Link to = {`/dashboard`}><span>Home </span></Link>
+    <Link to = {`/`}><span onClick={()=>localStorage.removeItem('token')}>Logout</span> </Link>
     {/* <Link to = "#"> Search</Link> */}
         </div>
 {/* 
