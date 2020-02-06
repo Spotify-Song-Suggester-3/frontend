@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 import "../App.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Spinner } from "react-spinkit";
 
 const WholeForm = styled.div`
   width: 100%;
@@ -14,7 +13,9 @@ const WholeForm = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(purple, red);
+  background: linear-gradient(-45deg, red, purple, #ff0040, #550a8a);
+  background-size: 400% 400%;
+  animation: gradient 30s ease infinite;
 `;
 const Display = styled.div`
   display: flex;
@@ -22,7 +23,7 @@ const Display = styled.div`
   align-items: center;
   justify-content: space-between;
   border: 1px solid black;
-  width: 500px;
+  width: 600px;
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
@@ -34,7 +35,9 @@ const Label = styled.label`
   color: #777;
   font-size: 0.8em;
   position: relative;
-  margin-top: 5%;
+  margin-top: 2%;
+  width: 100%;
+  height: 7vh;
 `;
 const Button = styled.button`
   width: 200px;
@@ -48,6 +51,14 @@ const Button = styled.button`
   border: none;
   background-size: 300% 100%;
   border-radius: 50px;
+  &:hover {
+    background: linear-gradient(red, purple);
+  }
+`;
+const Button1 = styled.button`
+  border: none;
+  background-color: white;
+  width: 100%;
 `;
 
 const Register = ({ values, errors, touched, status }) => {
@@ -57,7 +68,6 @@ const Register = ({ values, errors, touched, status }) => {
   const [emai, setemai] = useState(false);
   const [passwor, setPasswor] = useState(false);
   const [passworComfirm, setPassworComfirm] = useState(false);
-
   return (
     <WholeForm>
       <Display>
@@ -65,7 +75,7 @@ const Register = ({ values, errors, touched, status }) => {
           <h2>Register</h2>
           <Label htmlFor="firstName">
             <Field
-              onSelect={() => setToggled(!toggled)}
+              onFocus={() => setToggled(!toggled)}
               className={`border ${toggled ? "toggled" : ""}`}
               id="firstName"
               type="text"
@@ -78,7 +88,7 @@ const Register = ({ values, errors, touched, status }) => {
           </Label>
           <Label htmlFor="lastName">
             <Field
-              onSelect={() => setLastname(!lastname)}
+              onFocus={() => setLastname(!lastname)}
               className={`border ${lastname ? "toggled" : ""}`}
               id="lastName"
               type="text"
@@ -91,7 +101,7 @@ const Register = ({ values, errors, touched, status }) => {
           </Label>
           <Label htmlFor="username">
             <Field
-              onSelect={() => setUsernam(!usernam)}
+              onFocus={() => setUsernam(!usernam)}
               className={`border ${usernam ? "toggled" : ""}`}
               id="username"
               type="text"
@@ -104,7 +114,7 @@ const Register = ({ values, errors, touched, status }) => {
           </Label>
           <Label htmlFor="email">
             <Field
-              onSelect={() => setemai(!emai)}
+              onFocus={() => setemai(!emai)}
               className={`border ${emai ? "toggled" : ""}`}
               id="email"
               type="text"
@@ -117,7 +127,7 @@ const Register = ({ values, errors, touched, status }) => {
           </Label>
           <Label htmlFor="password">
             <Field
-              onSelect={() => setPasswor(!passwor)}
+              onFocus={() => setPasswor(!passwor)}
               className={`border ${passwor ? "toggled" : ""}`}
               id="password"
               type="text"
@@ -130,7 +140,7 @@ const Register = ({ values, errors, touched, status }) => {
           </Label>
           <Label htmlFor="passwordconfirm">
             <Field
-              onSelect={() => setPassworComfirm(!passworComfirm)}
+              onFocus={() => setPassworComfirm(!passworComfirm)}
               className={`border ${passworComfirm ? "toggled" : ""}`}
               id="passwordconfirm"
               type="text"
@@ -144,7 +154,7 @@ const Register = ({ values, errors, touched, status }) => {
           <Button type="submit">Sign Up</Button>
         </Form>
         <Link to="/">
-          <button className="button">Already have an account? Sign In</button>
+          <Button1 className="button">Already have an account? Sign In</Button1>
         </Link>
       </Display>
     </WholeForm>
@@ -177,7 +187,7 @@ const ForMikRegister = withFormik({
       .email()
       .required("Email is Required"),
     password: Yup.string()
-      .min(8)
+      .min(6)
       .max(16)
       .required("Password is Required"),
     passwordconfirm: Yup.string().oneOf(

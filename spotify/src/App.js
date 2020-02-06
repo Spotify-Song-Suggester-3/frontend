@@ -1,12 +1,13 @@
-import React from 'react';
-import Dashboard from './components/Dashboard';
-import './App.css';
+import React from "react";
+import Dashboard from "./components/Dashboard";
+import "./App.css";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import { Route, Link, Switch} from "react-router-dom";
 import PrivateRoute from './components/PrivateRoute'
 import BrowsePage from './components/BrowsePage';
 import { useHistory } from "react-router-dom";
+
 
 function App() {
   const history=useHistory();
