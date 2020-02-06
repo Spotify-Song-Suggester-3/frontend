@@ -14,19 +14,20 @@ const {userID} = props;
 
 const [favSongs, setFavSongs] = useState({
     title:'',
-    Artist: 'Beyonce'
+    Artist: ''
 
 });
 const addSong =()=>{
-    axios
-    .post ('https://reqres.in/api/users/', favSongs)
-    .then(res=>{
-    console.log('POST RES',res)
+    // axios
+    // .post ('https://reqres.in/api/users/', favSongs)
+    // .then(res=>{
+    // console.log('POST RES',res)
         const songArr = [];
-        setFavSongs(songArr.push(res.data))
+        setFavSongs(songArr.push.favSongs)
         alert('Song Added!')
+        console.log('FAVS',favSongs)
                
-    })
+    // })
     }
 
 return (
@@ -61,8 +62,8 @@ return (
                 
                     <Card body inverse style={{ backgroundColor: 'transparent', borderColor: '#333' }}>
                      <CardBody>
-                    <CardTitle>Track: {song.title} </CardTitle>
-                        <CardText>Artist: Queen Bey
+                    <CardTitle>Track: {song.song_title} </CardTitle>
+                        <CardText>Artist: {song.artist}
                         </CardText>
                       
                         

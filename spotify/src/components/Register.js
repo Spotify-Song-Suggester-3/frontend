@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
@@ -88,7 +88,7 @@ const Register = ({ values, errors, touched, status }) => {
       <Display>
         <Form>
           <h2>Register</h2>
-          {/* <Label htmlFor="firstName">
+          <Label htmlFor="firstName">
             <Field
               onFocus={() => setToggled(!toggled)}
               className={`border ${toggled ? "toggled" : ""}`}
@@ -113,7 +113,7 @@ const Register = ({ values, errors, touched, status }) => {
             {touched.lastName && errors.lastName && (
               <p className="hasError">{errors.lastName}</p>
             )}
-          </Label> */}
+          </Label>
           <Label htmlFor="username">
             <Field
               onFocus={() => setUsernam(!usernam)}
@@ -178,16 +178,16 @@ const Register = ({ values, errors, touched, status }) => {
 
 const ForMikRegister = withFormik({
   mapPropsToValues({
-    // firstName,
-    // lastName,
+    firstName,
+    lastName,
     username,
     email,
     password,
     // passwordconfirm
   }) {
     return {
-      // firstName: firstName || "",
-      // lastName: lastName || "",
+      firstName: firstName || "",
+      lastName: lastName || "",
       username: username || "",
       email: email || "",
       password: password || "",
@@ -195,8 +195,8 @@ const ForMikRegister = withFormik({
     };
   },
   validationSchema: Yup.object().shape({
-    // firstName: Yup.string().required("First Name is Required"),
-    // lastName: Yup.string().required("Last Name is Required"),
+    firstName: Yup.string().required("First Name is Required"),
+    lastName: Yup.string().required("Last Name is Required"),
     username: Yup.string().required("Username is Required"),
     email: Yup.string()
       .email()
@@ -204,7 +204,7 @@ const ForMikRegister = withFormik({
     password: Yup.string()
       .min(5)
       .max(50)
-      .required("Password is Required")
+      .required("Password is Required"),
     // passwordconfirm: Yup.string().oneOf(
     //   [Yup.ref("password"), null],
     //   "Passwords must match"
@@ -213,7 +213,7 @@ const ForMikRegister = withFormik({
   handleSubmit(values, { props, setStatus, resetForm }) {
     console.log("submitting", values);
     axiosWithAuth()
-      .post('/auth/register',values) //OTHER API. WORKING
+      .post('/auth/signup',values)
       .then(res => {
         setStatus(res.data);
         resetForm();

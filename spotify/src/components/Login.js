@@ -134,7 +134,7 @@ const ForMikLogin = withFormik({
   handleSubmit(values, { props, setStatus, resetForm }) {
     axiosWithAuth()
       .post(
-        '/auth/login', values)
+        '/auth/signin', values)
       .then(res => {
         localStorage.setItem("token", res.data.token);
         console.log("LOGIN RES",res.data);

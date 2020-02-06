@@ -69,8 +69,8 @@ const {userID} = props;
         <div className="split-container">
           <h2>Welcome (username)</h2>
           <p>Edit Your Profile Here</p>
-
-          <form onSubmit = {handleSubmit}className="profile-form">
+          <form>
+          {/* <form onSubmit = {handleSubmit}className="profile-form"> */}
             <div className="profile-div">
               <label>Username: </label>
               <input 
@@ -107,7 +107,8 @@ const {userID} = props;
                   onChange = {handleChanges} />
             </div>
           </form>
-          <Button onClick = {handleSubmit} className="profile-div" color="primary">Edit Profile</Button>
+          {/* onClick = {handleSubmit}  */}
+          <Button className="profile-div" color="primary">Edit Profile</Button>
         </div>
         <div className="split-container fav-container">
         <h2>Favorite Songs List</h2>

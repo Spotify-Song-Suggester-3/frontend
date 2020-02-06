@@ -7,10 +7,14 @@ export const FETCHING_SONGS_FAILURE = 'FETCHING_SONGS_FAILURE';
 export const FILTER_SONGS ='FILTER_SONGS';
 export const SET_USER_ID = 'SET_USER_ID';
 export const fetchSongs =()=>dispatch=>{
+  
     dispatch({type:FETCHING_SONGS_START})
-    axios
-    .get('https://www.songsterr.com/a/ra/songs/byartists.json?artists=Beyonce')
+   
+    axiosWithAuth()
+    
+    .get(`https://spotify-song-suggester-3.herokuapp.com/api/songs`)
     .then(res=>{
+        const token = localStorage.getItem('token',res.data.token);
         console.log('FETCHSONGS',res)
         dispatch({type:FETCHING_SONGS_SUCCESS, payload:res.data})
     })
