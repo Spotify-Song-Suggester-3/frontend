@@ -5,6 +5,7 @@ import SearchFeed from './SearchFeed';
 import {Button, Card,CardText, CardTitle, CardBody} from 'reactstrap';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 const BrowsePage = (props) =>{
 // const [searchTerm, setSearchTerm] = useState('');
@@ -16,27 +17,22 @@ const {userID} = props;
 //     }
 // }
 
-const addSong = (song, userID) =>{
-    
-    axiosWithAuth()
-    .post( '/songs/save', {
-user_id: parseInt(userID),
-song_id: song.id,
-// favorites:[]
+const [favSongs, setFavSongs] = useState({
+    title:'',
+    Artist: 'Beyonce'
 
-})
-
-
-//may have to use song_id as param in post
-.then (res =>{
-    console.log('FAV ADD RES', res)
-    alert('songs added to favorites')
-    console.log('TO ADD TO FAV',res.data)
-})
-.catch(err=>{alert(err)
 });
-
-}
+const addSong =()=>{
+    axios
+    .post ('https://reqres.in/api/users/', favSongs)
+    .then(res=>{
+    console.log('POST RES',res)
+        const songArr = [];
+        setFavSongs(songArr.push(res.data))
+        console.log('SONG ARRAY', songArr)
+               
+    })
+    }
 
 return (
 
@@ -88,7 +84,7 @@ return (
                         Title{song.song_title},
                         Artist{song.artist},
                         favorite{song.favorite} */}
-                        <Button color ="secondary" onClick = {()=>addSong(song, userID)}>Save.</Button>
+                        <Button color ="secondary" onClick = {addSong}>Save.</Button>
                         </CardBody>
                     </Card>
                 

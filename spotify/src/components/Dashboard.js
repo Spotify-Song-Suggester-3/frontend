@@ -7,34 +7,44 @@ import {connect} from 'react-redux';
 import {fetchSongs} from '../actions';
 const Dashboard= (props) =>{
 const {userID} = props;
-console.log('USERID ON FAV',userID);
-const api = 'https://spotify-song-suggester-backend.herokuapp.com'
-  const [favSongs, setFavSongs] = useState([]);
 
-  useEffect(() => {
-    axiosWithAuth()
-    .get(`${api}/api/songs/${userID}/favorites`)  
-  .then(res => {
-    setFavSongs(res.data);
-    console.log('FAV SNOGS SET', res.data)
-  })
-  .catch(err=>{
-    console.log('FAV SONG GET ERR', err);
-  })
-  }, []);
 
-  const deleteFav = id =>{
-    axiosWithAuth()
-    .delete(`${api}/api/songs/${userID}/favorites/${id}`)
-    .then(res=>{
-      setFavSongs(favSongs.filter(song=> song.id !== id));
-      console.log('DELETING',res )
+  const [edit, setEdit] = useState({
+    email:'',
+    username:'',
+    password:''
+    
+    });
+    
+    const handleChanges = e =>{
+     setEdit({
+       ...edit,
+      [e.target.name] : e.target.value
     })
-    .catch(err=>{
-      console.warn(err);
-      alert('Unable to delete');
-    })
-  }
+    }
+    
+    const handleSubmit = e =>{
+      e.preventDefault();
+      setEdit(edit);
+      axios
+      .post(
+        'https://reqres.in/api/users/', edit)
+      .then(res => {
+     
+        console.log("EDIT RES",res.data);
+        props.setEdit(res.data);
+       
+       
+      })
+      .catch(error => console.log(error.response));
+    // console.log("submitted email:", values.username);
+    // console.log("submitted password:", values.password);
+    
+    
+    
+    }
+
+
 
   return (
     <div>
@@ -49,29 +59,45 @@ const api = 'https://spotify-song-suggester-backend.herokuapp.com'
         <div className="split-container">
           <h2>Welcome (username)</h2>
           <p>Edit Your Profile Here</p>
-          <form className="profile-form">
+
+          <form onSubmit = {handleSubmit}className="profile-form">
             <div className="profile-div">
               <label>Username: </label>
-              <input />
+              <input 
+               type="text"
+               placeholder = "username"
+               name = "username"
+               value = {edit.username}
+               onChange = {handleChanges}/>
             </div>
             <div className="profile-div">
               <label>Password: </label>
-              <input />
+              <input 
+                type="text"
+                placeholder = "password"
+                name = "password"
+                value = {edit.password}
+                onChange = {handleChanges}/>
             </div>
-            <div className="profile-div">
+            {/* <div className="profile-div">
               <label>First Name: </label>
               <input />
             </div>
             <div className="profile-div">
               <label>Last Name: </label>
               <input />
-            </div>
+            </div> */}
             <div className="profile-div">
               <label>E-Mail: </label>
-              <input />
+              <input
+                  type="text"
+                  placeholder = "email"
+                  name = "email"
+                  value = {edit.email}
+                  onChange = {handleChanges} />
             </div>
           </form>
-          <Button className="profile-div" color="primary">Edit Profile</Button>
+          <Button onClick = {handleSubmit} className="profile-div" color="primary">Edit Profile</Button>
         </div>
         <div className="split-container fav-container">
         <h2>Favorite Songs List</h2>
@@ -85,7 +111,7 @@ const api = 'https://spotify-song-suggester-backend.herokuapp.com'
             :
             <p>Like some songs</p>
             } */}
-            <Button onDelete = {deleteFav} color="secondary">Delete Song</Button>
+            <Button  color="secondary">Delete Song</Button>
           </div>
         </div>
       </div>

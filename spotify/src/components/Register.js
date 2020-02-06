@@ -201,7 +201,7 @@ const ForMikRegister = withFormik({
   handleSubmit(values, { props, setStatus, resetForm }) {
     console.log("submitting", values);
     axiosWithAuth()
-      .post('/auth/register',values)
+      .post('/auth/register',values) //OTHER API. WORKING
       .then(res => {
         setStatus(res.data);
         resetForm();
