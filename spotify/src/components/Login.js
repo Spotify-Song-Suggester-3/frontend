@@ -123,7 +123,7 @@ const ForMikLogin = withFormik({
   validationSchema: Yup.object().shape({
     username: Yup.string().required("Name is Required"),
     password: Yup.string()
-      .min(8)
+      .min(6)
       .max(16)
       .required("Password is Required")
   }),
