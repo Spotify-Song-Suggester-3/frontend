@@ -24,7 +24,7 @@ const Display = styled.div`
   align-items: center;
   justify-content: space-between;
   border: 1px solid black;
-  width: 40%;
+  width: 400px;
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
