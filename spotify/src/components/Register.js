@@ -205,10 +205,7 @@ const ForMikRegister = withFormik({
       .min(5)
       .max(50)
       .required("Password is Required"),
-    // passwordconfirm: Yup.string().oneOf(
-    //   [Yup.ref("password"), null],
-    //   "Passwords must match"
-    // )
+
   }),
   handleSubmit(values, { props, setStatus, resetForm }) {
     console.log("submitting", values);
