@@ -14,7 +14,7 @@ export const fetchSongs =()=>dispatch=>{
     
     .get(`https://spotify-song-suggester-3.herokuapp.com/api/songs`)
     .then(res=>{
-        const token = localStorage.setItem('token', res.data.token);
+        // const token = localStorage.setItem('token', res.data.token);
         console.log('FETCHSONGS',res)
         dispatch({type:FETCHING_SONGS_SUCCESS, payload:res.data})
     })

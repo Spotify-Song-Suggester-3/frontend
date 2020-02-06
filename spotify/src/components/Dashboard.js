@@ -5,14 +5,18 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {fetchSongs} from '../actions';
-const Dashboard= (props) =>{
-const {userID} = props;
+import {useParams} from 'react-router-dom';
+import EditForm from './EditForm';
+ function Dashboard (props) {
+const {userID} = useParams;
 
 
   const [edit, setEdit] = useState({
     email:'',
     username:'',
-    password:''
+    password:'',
+    firstName:'',
+    LastName:''
     
     });
     
@@ -23,36 +27,24 @@ const {userID} = props;
     })
     }
     
-  //   const handleSubmit = e =>{
-  //     e.preventDefault();
-  //     setEdit(edit);
-      
-  //     axios
-  //     .post(
-  //       'https://reqres.in/api/users/', edit)
-  //     .then(res => {
-     
-  //       console.log("EDIT RES",res.data);
-  //       props.setEdit(res.data);
+    const handleSubmit = e =>{
+      e.preventDefault();
+      axiosWithAuth()
+      .put
+        (`users/${userID}`, edit)
+      .then(response => {
+        const token = localStorage.setItem('token', response.data.token)
+        console.log("EDIT RES",response.data);
+        console.log('SUBMITTING EDIT')
+        // props.history.push('/dashboard');
+      }
+      )
+    }
        
        
-  // const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState([]);
 
-  // useEffect(() => {
-  //   axiosWithAuth()
-  //   .get('/songs')
-  //     // .get("https://spotify-song-suggester-3.herokuapp.com/api/songs")
-  //     .then(response => {
-  //       console.log("favorites get request", response.data);
-  //       setFavorites([...favorites, response.data]);
-  //     })
-  //     .catch(error => console.log(error.response));
-  //   // console.log("submitted email:", values.username);
-  //   // console.log("submitted password:", values.password);
-    
-    
-    
-  //   }
+ 
 
 
 
@@ -64,13 +56,18 @@ const {userID} = props;
         <Link to = {`/browse`}>
         <Button color="primary">Browse</Button>
         </Link>
+        
       </div>
-      <div className="dashboard-container">
+      <div className = "edit">
+      <EditForm/>
+      </div>
+    
+      {/* <div className="dashboard-container">
         <div className="split-container">
           <h2>Welcome (username)</h2>
           <p>Edit Your Profile Here</p>
-          <form>
-          {/* <form onSubmit = {handleSubmit}className="profile-form"> */}
+       
+          <form onSubmit = {handleSubmit} className="profile-form">
             <div className="profile-div">
               <label>Username: </label>
               <input 
@@ -89,14 +86,14 @@ const {userID} = props;
                 value = {edit.password}
                 onChange = {handleChanges}/>
             </div>
-            {/* <div className="profile-div">
+            <div className="profile-div">
               <label>First Name: </label>
               <input />
             </div>
             <div className="profile-div">
               <label>Last Name: </label>
               <input />
-            </div> */}
+            </div>
             <div className="profile-div">
               <label>E-Mail: </label>
               <input
@@ -107,13 +104,12 @@ const {userID} = props;
                   onChange = {handleChanges} />
             </div>
           </form>
-          {/* onClick = {handleSubmit}  */}
-          <Button className="profile-div" color="primary">Edit Profile</Button>
-        </div>
+          <Button className="profile-div" color="primary">Submit</Button>
+        </div> */}
         <div className="split-container fav-container">
         <h2>Favorite Songs List</h2>
           <div className="favorites-list">
-            {/* {favSongs.length ? favSongs.map(song =>(
+            {/* {props.favorites.length ? props.favorites.map(song =>(
              <p>song: {song.track}</p> 
             <p> artist: {song.artist}</p> 
            
@@ -126,7 +122,7 @@ const {userID} = props;
           </div>
         </div>
       </div>
-    </div>
+    
             
   );
 }

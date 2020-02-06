@@ -18,12 +18,12 @@ const [favSongs, setFavSongs] = useState({
 
 });
 const addSong =()=>{
-    // axios
+    // axiosWithAuth()
     // .post ('https://reqres.in/api/users/', favSongs)
     // .then(res=>{
     // console.log('POST RES',res)
-        const songArr = [];
-        setFavSongs(songArr.push.favSongs)
+        
+        setFavSongs(props.favorites.push.favSongs)
         alert('Song Added!')
         console.log('FAVS',favSongs)
                
@@ -61,11 +61,14 @@ return (
                        
                 
                     <Card body inverse style={{ backgroundColor: 'transparent', borderColor: '#333' }}>
+                 
                      <CardBody>
+                     <div className = "song-card">
+                         {/* <Link>Rec Songs</Link>  on click of card will go to song id with rec songslist*/}
                     <CardTitle>Track: {song.song_title} </CardTitle>
                         <CardText>Artist: {song.artist}
                         </CardText>
-                      
+                        </div>
                         
                         {/*setup for OUR points:
                          key{id}

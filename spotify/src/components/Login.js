@@ -5,7 +5,6 @@ import styled from "styled-components";
 import "../App.css";
 import { Link } from "react-router-dom";
 // import axios from "axios";
-import { useHistory } from "react-router-dom";
 import {connect} from "react-redux";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import {setUserID} from "../actions/index";
@@ -127,8 +126,8 @@ const ForMikLogin = withFormik({
   validationSchema: Yup.object().shape({
     username: Yup.string().required("Name is Required"),
     password: Yup.string()
-    //   .min(8)
-    //   .max(16)
+      .min(5)
+      .max(50)
       .required("Password is Required")
   }),
   handleSubmit(values, { props, setStatus, resetForm }) {
@@ -137,7 +136,7 @@ const ForMikLogin = withFormik({
         '/auth/signin', values)
       .then(res => {
         localStorage.setItem("token", res.data.token);
-        console.log("LOGIN RES",res.data);
+        // console.log("LOGIN RES",res.data);
         props.setUserID(res.data.id);
         console.log("LOGIN USER ID",res.data)
         props.history.push("/dashboard")
