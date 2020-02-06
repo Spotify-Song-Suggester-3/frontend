@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { withFormik, Form as Form1, Field } from "formik";
 import * as Yup from "yup";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import "../App.css";
 import { Link } from "react-router-dom";
 // import axios from "axios";
@@ -17,7 +17,9 @@ const WholeForm = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(purple, red);
+  background: linear-gradient(-45deg, red, purple, #ff0040, #550a8a);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
 `;
 const Display = styled.div`
   display: flex;
@@ -25,11 +27,12 @@ const Display = styled.div`
   align-items: center;
   justify-content: space-between;
   border: 1px solid black;
-  width: 500px;
+  width: 600px;
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
   padding: 42px 55px 45px 55px;
+  margin-bottom: 10%;
 `;
 const Label = styled.label`
   display: flex;
@@ -38,9 +41,11 @@ const Label = styled.label`
   font-size: 0.8em;
   position: relative;
   margin-top: 5%;
+  width: 100%;
+  height: 5vh;
 `;
 const Button = styled.button`
-  width: 200px;
+  width: 80%;
   background: linear-gradient(purple, red);
   font-weight: 600;
   color: white;
@@ -55,13 +60,22 @@ const Button = styled.button`
     background: linear-gradient(red, purple);
   }
 `;
+const Button1 = styled.button`
+  border: none;
+  background-color: white;
+  width: 100%;
+`;
+const H1 = styled.h1`
+  color: white;
+  width: 100%;
+`;
 
 const Login = ({ values, errors, touched, status, handleSubmit }) => {
-  //   const history = useHistory();
-
-
+  const [usernam, setUsernam] = useState(false);
+  const [passwor, setPasswor] = useState(false);
   return (
     <WholeForm>
+      <H1>Spotify Song Suggester</H1>
       <Display>
         <Form1 onSubmit = {handleSubmit}>
           <h2>Welcome</h2>
@@ -69,11 +83,12 @@ const Login = ({ values, errors, touched, status, handleSubmit }) => {
 
           <Label htmlFor="username">
             <Field
-              className="border"
+              onFocus={() => setUsernam(!usernam)}
+              className={`border ${usernam ? "toggled" : ""}`}
               id="username"
               type="text"
               name="username"
-              placeholder="username or email"
+              placeholder="username"
             />
             {touched.username && errors.username && (
               <p className="hasError">{errors.username}</p>
@@ -81,7 +96,8 @@ const Login = ({ values, errors, touched, status, handleSubmit }) => {
           </Label>
           <Label htmlFor="password">
             <Field
-              className="border"
+              onFocus={() => setPasswor(!passwor)}
+              className={`border ${passwor ? "toggled" : ""}`}
               id="password"
               type="text"
               name="password"
@@ -94,7 +110,7 @@ const Login = ({ values, errors, touched, status, handleSubmit }) => {
           <Button type="submit">LOG IN</Button>
         </Form1>
         <Link to="/register">
-          <button className="button">Don't have an account? Sign Up</button>
+          <Button1>Don't have an account? Sign Up</Button1>
         </Link>
       </Display>
     </WholeForm>

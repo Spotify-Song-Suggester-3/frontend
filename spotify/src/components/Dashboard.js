@@ -23,27 +23,36 @@ const {userID} = props;
     })
     }
     
-    const handleSubmit = e =>{
-      e.preventDefault();
-      setEdit(edit);
+  //   const handleSubmit = e =>{
+  //     e.preventDefault();
+  //     setEdit(edit);
       
-      axios
-      .post(
-        'https://reqres.in/api/users/', edit)
-      .then(res => {
+  //     axios
+  //     .post(
+  //       'https://reqres.in/api/users/', edit)
+  //     .then(res => {
      
-        console.log("EDIT RES",res.data);
-        props.setEdit(res.data);
+  //       console.log("EDIT RES",res.data);
+  //       props.setEdit(res.data);
        
        
-      })
-      .catch(error => console.log(error.response));
-    // console.log("submitted email:", values.username);
-    // console.log("submitted password:", values.password);
+  // const [favorites, setFavorites] = useState([]);
+
+  // useEffect(() => {
+  //   axiosWithAuth()
+  //   .get('/songs')
+  //     // .get("https://spotify-song-suggester-3.herokuapp.com/api/songs")
+  //     .then(response => {
+  //       console.log("favorites get request", response.data);
+  //       setFavorites([...favorites, response.data]);
+  //     })
+  //     .catch(error => console.log(error.response));
+  //   // console.log("submitted email:", values.username);
+  //   // console.log("submitted password:", values.password);
     
     
     
-    }
+  //   }
 
 
 

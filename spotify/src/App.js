@@ -9,6 +9,8 @@ import { BrowserRouter as Router} from 'react-router-dom';
 import PrivateRoute from './routes/PrivateRoute';
 import SearchFeed from './components/SearchFeed';
 function App() {
+  const history=useHistory();
+
   return (
     <Router>
     <div className="App">

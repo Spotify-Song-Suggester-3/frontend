@@ -1,7 +1,7 @@
 .App {
   text-align: center;
-  min-height:100vh;
-  background-image: url('./images/dashboard-background.jpg');
+  min-height: 100vh;
+  background-image: url("./images/dashboard-background.jpg");
   background-size: cover;
 }
 .App-header {
@@ -15,58 +15,51 @@
   color: white;
 }
 .dashboard-container {
-  display:flex;
-  justify-content:space-evenly;
-  margin:3% auto;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 3% auto;
 }
 .split-container {
-  border-radius:25px;
-  padding:2%;
-  color:white;
+  border-radius: 25px;
+  padding: 2%;
+  color: white;
   background-image: linear-gradient(purple, red);
 }
 .title-container {
-  color:white;
+  color: white;
   background-image: linear-gradient(red, purple);
-  margin:0 auto;
-  width:25%;
-  border-radius:10px;
-  padding:1%;
+  margin: 0 auto;
+  width: 25%;
+  border-radius: 10px;
+  padding: 1%;
 }
 .title-container h2 {
-  font-size:1.5rem;
+  font-size: 1.5rem;
 }
-
 .border {
-  width: 100%;
-  position: relative;
-  border: none;
-  border-bottom: 2px solid #d9d9d9;
-  padding-bottom: 13px;
-  margin-top: 5%;
-  outline: none;
+  width: 100% !important;
+  position: relative !important;
+  border: none !important;
+  border-bottom: 2px solid #d9d9d9 !important;
+  padding-bottom: 13px !important;
+  margin-top: 0% !important;
+  outline: none !important;
 }
 .toggled {
-  border-bottom: 2px solid lightgreen;
+  border-bottom: 2px solid lightgreen !important;
 }
-
-button {
-  border: none;
-  background-color: white;
+.hasError {
+  color: darkred;
 }
 .button:hover {
   color: red;
 }
-
 .profile-div {
   margin: 3%;
-  text-align:center;
+  text-align: center;
 }
 .profile-div label {
-  width:100%;
-}
-.fav-container {
-  width:20%;
+  width: 100%;
 }
 .favorites-list {
   border: 1px solid white;
@@ -97,5 +90,16 @@ button {
   border-radius: 25px;
   display:flex;
   justify-content: space-evenly;
+  padding-bottom: 5%;
 }
-
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
