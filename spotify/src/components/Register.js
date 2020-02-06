@@ -221,12 +221,12 @@ const ForMikRegister = withFormik({
         console.log("REGISTER",res);
       })
       .catch(error => console.log(error.res));
-    // console.log("submitted First name:", values.firstName);
-    // console.log("submitted Last name:", values.lastName);
-    // console.log("submitted email:", values.email);
-    // console.log("submitted username:", values.username);
-    // console.log("submitted password:", values.password);
-    // console.log("password matches:", values.passwordconfirm);
+    console.log("submitted First name:", values.firstName);
+    console.log("submitted Last name:", values.lastName);
+    console.log("submitted email:", values.email);
+    console.log("submitted username:", values.username);
+    console.log("submitted password:", values.password);
+   
   }
 })(Register);
 

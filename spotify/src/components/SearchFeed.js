@@ -1,33 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
-import {filterSongs} from '../actions';
+import {fetchSongs} from '../actions';
 import axios from 'axios';
-const SearchFeed = (props) =>{
+import axiosWithAuth from '../utils/axiosWithAuth';
+const SearchFeed = ({fetchSongs, ...props}) =>{
+    const { term, songs, isFiltering } = props;
+    const [filteredSongs, setFilteredSongs] = useState([]);
 
-    const [names, setNames] = useState([]);
-    const [query, setQuery] = useState("");
-    useEffect(() => {
-      axios
-        .get(`https://www.songsterr.com/a/ra/songs/byartists.json?artists=Beyonce`)
-        .then(response => {
-          const search = response.data;
-          console.log(search);
-          const result = search.filter(song =>
-          
-            song.title
-              .toLowerCase()
-              .includes(query.toLowerCase())
-          );
-          setNames(result);
-        });
 
-        
-    }, [query]);
-    const handleInputChange = event => {
-      setQuery(event.target.value);
-    };
-  
+    // useEffect(() => {
+    //     fetchSongs();
+    //     const termLower = term.toLowerCase();
+    //     setFilteredSongs(props.gettingSongs.filter(song => {
+    //         if(song.track.toLowerCase().includes(termLower)
+    //         || song.artist.toLowerCase().includes(termLower)) {
+    //             return true;
+    //         }
+    //     }));
+    // }, [term, fetchSongs, isFiltering]);
+
+
+    // if (props.gettingSongs) {
+    //     return (<p>fetching songs</p>)
+    // };
+
+
+
+
+
     return (
      
     
@@ -42,30 +43,19 @@ const SearchFeed = (props) =>{
         <form className="search-form">
           <input
             type="text"
-            onChange={handleInputChange}
-            value={query}
             name="name"
             tabIndex="0"
             className="prompt search-name"
             placeholder="search by song name"
             autoComplete="off"
           />
+
+          
         </form>
         <div className="search-return">
-          {names.map(name => {
-            return (
-              <div
-                className="char-search"
-                key={name.id}
-              >
-                <p>
-                 
-                  {name.title}
-                </p>
-               
-              </div>
-            );
-          })}
+       
+
+
         </div>
       </div>
     );
@@ -81,4 +71,4 @@ return{
 }
 
 }
-export default connect(mapStateToProps, {filterSongs})(SearchFeed)
+export default connect(mapStateToProps, {fetchSongs})(SearchFeed)
