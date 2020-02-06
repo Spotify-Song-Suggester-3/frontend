@@ -1,25 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
+import Dashboard from './components/Dashboard';
 import './App.css';
-
+import BrowsePage from './components/BrowsePage';
+import Login from "./components/Login";
+import Register from "./components/Register";
+import { Route, Link, Switch} from "react-router-dom";
+import { BrowserRouter as Router} from 'react-router-dom';
+import PrivateRoute from './routes/PrivateRoute';
+import SearchFeed from './components/SearchFeed';
 function App() {
+ 
+
   return (
+    <Router>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Route exact path = '/' component={Login} />
+      <Route path = '/register' component={Register}/>
+      <PrivateRoute path = '/browse' component={BrowsePage}/>
+      <PrivateRoute path = '/dashboard' component={Dashboard}/>
+      <PrivateRoute path='/search' component={SearchFeed} />
+
     </div>
+    </Router>
   );
 }
 
