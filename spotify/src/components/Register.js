@@ -67,7 +67,7 @@ const Register = ({ values, errors, touched, status }) => {
   const [usernam, setUsernam] = useState(false);
   const [emai, setemai] = useState(false);
   const [passwor, setPasswor] = useState(false);
-  const [passworComfirm, setPassworComfirm] = useState(false);
+  // const [passworComfirm, setPassworComfirm] = useState(false);
   return (
     <WholeForm>
       <Display>
@@ -138,7 +138,7 @@ const Register = ({ values, errors, touched, status }) => {
               <p className="hasError">{errors.password}</p>
             )}
           </Label>
-          <Label htmlFor="passwordconfirm">
+          {/* <Label htmlFor="passwordconfirm">
             <Field
               onFocus={() => setPassworComfirm(!passworComfirm)}
               className={`border ${passworComfirm ? "toggled" : ""}`}
@@ -150,7 +150,7 @@ const Register = ({ values, errors, touched, status }) => {
             {touched.passwordconfirm && errors.passwordconfirm && (
               <p className="hasError">{errors.passwordconfirm}</p>
             )}
-          </Label>
+          </Label> */}
           <Button type="submit">Sign Up</Button>
         </Form>
         <Link to="/">
@@ -167,16 +167,16 @@ const ForMikRegister = withFormik({
     lastName,
     username,
     email,
-    password,
-    passwordconfirm
+    password
+    // passwordconfirm
   }) {
     return {
       firstName: firstName || "",
       lastName: lastName || "",
       username: username || "",
       email: email || "",
-      password: password || "",
-      passwordconfirm: passwordconfirm || ""
+      password: password || ""
+      // passwordconfirm: passwordconfirm || ""
     };
   },
   validationSchema: Yup.object().shape({
@@ -189,11 +189,11 @@ const ForMikRegister = withFormik({
     password: Yup.string()
       .min(6)
       .max(16)
-      .required("Password is Required"),
-    passwordconfirm: Yup.string().oneOf(
-      [Yup.ref("password"), null],
-      "Passwords must match"
-    )
+      .required("Password is Required")
+    // passwordconfirm: Yup.string().oneOf(
+    //   [Yup.ref("password"), null],
+    //   "Passwords must match"
+    // )
   }),
   handleSubmit(values, { props, setStatus, resetForm }) {
     console.log("submitting", values);
@@ -203,7 +203,7 @@ const ForMikRegister = withFormik({
         values
       )
       .then(response => {
-        props.history.push('/browse')
+        props.history.push("/browse");
         console.log(response.data);
         console.log(response);
       })
@@ -213,7 +213,7 @@ const ForMikRegister = withFormik({
     console.log("submitted email:", values.email);
     console.log("submitted username:", values.username);
     console.log("submitted password:", values.password);
-    console.log("password matches:", values.passwordconfirm);
+    // console.log("password matches:", values.passwordconfirm);
   }
 })(Register);
 

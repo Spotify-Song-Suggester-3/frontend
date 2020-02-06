@@ -16,7 +16,6 @@ const WholeForm = styled.div`
   background: linear-gradient(-45deg, red, purple, #ff0040, #550a8a);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
-  flex-direction: column;
 `;
 const Display = styled.div`
   display: flex;
@@ -24,11 +23,12 @@ const Display = styled.div`
   align-items: center;
   justify-content: space-between;
   border: 1px solid black;
-  width: 400px;
+  width: 600px;
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
   padding: 42px 55px 45px 55px;
+  margin-bottom: 10%;
 `;
 const Label = styled.label`
   display: flex;
@@ -63,11 +63,8 @@ const Button1 = styled.button`
 `;
 const H1 = styled.h1`
   color: white;
-  padding-bottom: 2%;
   width: 100%;
 `;
-
-
 
 const Login = ({ values, errors, touched, status }) => {
   const [usernam, setUsernam] = useState(false);
@@ -131,7 +128,6 @@ const ForMikLogin = withFormik({
       .required("Password is Required")
   }),
   handleSubmit(values, { props, setStatus, resetForm }) {
-      
     axios
       .post(
         "https://spotify-song-suggester-3.herokuapp.com/api/auth/signin",
