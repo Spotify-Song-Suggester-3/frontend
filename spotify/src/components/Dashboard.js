@@ -24,16 +24,7 @@ const api = 'https://spotify-song-suggester-backend.herokuapp.com'
   }, []);
 
   const deleteFav = id =>{
-    axiosWithAuth()
-    .delete(`${api}/api/songs/${userID}/favorites/${id}`)
-    .then(res=>{
-      setFavSongs(favSongs.filter(song=> song.id !== id));
-      console.log('DELETING',res )
-    })
-    .catch(err=>{
-      console.warn(err);
-      alert('Unable to delete');
-    })
+
   }
 
   return (
