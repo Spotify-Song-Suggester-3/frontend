@@ -3,22 +3,38 @@ import {Button} from 'reactstrap';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
-function Dashboard() {
-
-  const [favorites, setFavorites] = useState([]);
+import {connect} from 'react-redux';
+import {fetchSongs} from '../actions';
+const Dashboard= (props) =>{
+const {userID} = props;
+console.log('USERID ON FAV',userID);
+const api = 'https://spotify-song-suggester-backend.herokuapp.com'
+  const [favSongs, setFavSongs] = useState([]);
 
   useEffect(() => {
     axiosWithAuth()
-    
-    // .get("https://spotify-song-suggester-3.herokuapp.com/api/songs")
-    //   .then(response => {
-    //     console.log("favorites get request", response.data);
-    //     setFavorites(response.data);
-    //   })
-    //   .catch(error => {
-    //     console.log("error from server:", error);
-    //   });
+    .get(`${api}/api/songs/${userID}/favorites`)  
+  .then(res => {
+    setFavSongs(res.data);
+    console.log('FAV SNOGS SET', res.data)
+  })
+  .catch(err=>{
+    console.log('FAV SONG GET ERR', err);
+  })
   }, []);
+
+  const deleteFav = id =>{
+    axiosWithAuth()
+    .delete(`${api}/api/songs/${userID}/favorites/${id}`)
+    .then(res=>{
+      setFavSongs(favSongs.filter(song=> song.id !== id));
+      console.log('DELETING',res )
+    })
+    .catch(err=>{
+      console.warn(err);
+      alert('Unable to delete');
+    })
+  }
 
   return (
     <div>
@@ -60,14 +76,33 @@ function Dashboard() {
         <div className="split-container fav-container">
         <h2>Favorite Songs List</h2>
           <div className="favorites-list">
-            <p>song: test</p>
-            <p>artist: test</p>
-            <Button color="secondary">Delete Song</Button>
+            {/* {favSongs.length ? favSongs.map(song =>(
+             <p>song: {song.track}</p> 
+            <p> artist: {song.artist}</p> 
+           
+            <Button onDelete = {deleteFav} color="secondary">Delete Song</Button>
+            ))
+            :
+            <p>Like some songs</p>
+            } */}
+            <Button onDelete = {deleteFav} color="secondary">Delete Song</Button>
           </div>
         </div>
       </div>
     </div>
+            
   );
 }
 
-export default Dashboard;
+const mapStateToProps =state =>{
+  return{
+       songs:state.songs,
+      gettingSongs:state.gettingSongs,
+      error:state.error,
+      isFiltering:state.isFiltering,
+      userID:state.userID,
+      favorites:state.favorites
+  };
+}
+
+export default connect(mapStateToProps, {fetchSongs})(Dashboard);
