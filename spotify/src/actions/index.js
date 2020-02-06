@@ -1,6 +1,6 @@
 //actions for fetching songs for BrowsePage
 import axiosWithAuth from '../utils/axiosWithAuth';
-
+import axios from 'axios';
 export const FETCHING_SONGS_START ='FETCHING_SONGS_START';
 export const FETCHING_SONGS_SUCCESS= 'FETCHING_SONGS_SUCCESS';
 export const FETCHING_SONGS_FAILURE = 'FETCHING_SONGS_FAILURE';
@@ -8,8 +8,8 @@ export const FILTER_SONGS ='FILTER_SONGS';
 export const SET_USER_ID = 'SET_USER_ID';
 export const fetchSongs =()=>dispatch=>{
     dispatch({type:FETCHING_SONGS_START})
-    axiosWithAuth()
-    .get('/songs')
+    axios
+    .get('https://www.songsterr.com/a/ra/songs/byartists.json?artists=Beyonce')
     .then(res=>{
         console.log('FETCHSONGS',res)
         dispatch({type:FETCHING_SONGS_SUCCESS, payload:res.data})

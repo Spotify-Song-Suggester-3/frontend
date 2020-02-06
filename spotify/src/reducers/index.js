@@ -3,12 +3,13 @@ import {FETCHING_SONGS_START, FETCHING_SONGS_SUCCESS, FETCHING_SONGS_FAILURE, FI
 
 
 const intialState ={
-   songs: [],
-  isFiltering:false,
+//    songs: [],
+//   isFiltering:false,
+loading:false,
   gettingSongs:false,
     error:'',
     userID:'',
-    favorites:[]
+    // favorites:[]
 }
 
 
@@ -16,17 +17,17 @@ export const reducer = (state =intialState, action)=>{
    switch(action.type){
        case FETCHING_SONGS_START:
            return{
-               ...state, 
-              gettingSongs: true,
+               ...state,
                error:'',
-               isFiltering:false,
+               loading:true,
              
            }
         case FETCHING_SONGS_SUCCESS:
             return{
                 ...state,
-                songs: action.payload,
-                gettingSongs:false,
+                // songs: action.payload,
+                loading:false,
+                gettingSongs:action.payload,
                 error:''
             };
 
@@ -42,12 +43,12 @@ export const reducer = (state =intialState, action)=>{
                 ...state,
                 userID: action.payload
             }
-                case FILTER_SONGS:
-                    return{
-                        ...state, 
-                       gettingSongs:action.payload,
-                        isFiltering:true
-                    }
+                // case FILTER_SONGS:
+                //     return{
+                //         ...state, 
+                //        gettingSongs:action.payload,
+                //         isFiltering:true
+                //     }
 
                 default:
                     return state

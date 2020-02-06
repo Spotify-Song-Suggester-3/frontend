@@ -1,10 +1,9 @@
-//sample server just in case. local only
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const port = process.env.PORT || 3333;
 
-
+//base URL: 
 const server = express();
 server.use(bodyParser.json());
 server.use(cors());
@@ -14,8 +13,6 @@ const sendUserError = (msg, res) => {
   res.json({ Error: msg });
   return;
 };
-
-// Data from https://www.uncommongoods.com/fun/by-interest/geek-gifts
 
 
 
@@ -42,7 +39,7 @@ server.get("/itemById/:id", (req, res) => {
 //   const newItem = { name, artist, mood, tempo, acoustic, id: itemId };
 //   if (!name || !artist) {
 //     return sendUserError(
-//       "Ya gone did goofed! Name/Price/Description are all required to create an item in the item DB.",
+//       "Ya gone did goofed! Name/Title/Description are all required to create an item in the item DB.",
 //       res
 //     );
 //   }
