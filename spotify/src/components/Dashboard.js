@@ -30,13 +30,14 @@ const {userID} = useParams();
 
 
 const deleteProfile= () => {
+  alert('Sorry to see you go!')
   axiosWithAuth()
-  .delete(`https://spotify-song-suggester-3.herokuapp.com/api/users/${props.userID}`)
-  .then(res =>{
-    console.log('DELTEING', res)
-    alert('Sorry to see you go!')
-  })
-  .catch(err=>console.log('DELETING',err))
+  // .delete(`https://spotify-song-suggester-3.herokuapp.com/api/users/${props.userID}`)
+  // .then(res =>{
+  //   console.log('DELTEING', res)
+  //   alert('Sorry to see you go!')
+  // })
+  // .catch(err=>console.log('DELETING',err))
   
 };
 
