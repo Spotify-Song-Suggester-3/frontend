@@ -41,9 +41,9 @@ const deleteProfile= () => {
 
   return (
     <div>
-      <Link>
-      <h2 className="App-header">Welcome To Your Dashboard</h2>
-      </Link>
+      <a href= "https://spotify-song-suggester-3.github.io/marketing/" >
+      <h2 className="App-header">More About S.S.S.</h2>
+      </a>
       <div className="title-container">
         <h2>Let's Find Some New Music!</h2>
         <Link to = {`/browse`}>
