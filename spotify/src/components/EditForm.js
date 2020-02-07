@@ -3,8 +3,6 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 import "../App.css";
-// import axios from "axios";
-import { useParams } from "react-router-dom";
 import { Spinner } from "react-spinkit";
 import axiosWithAuth from '../utils/axiosWithAuth';
 import {connect} from 'react-redux';
@@ -17,7 +15,7 @@ const EditForm = ({ values, errors, touched, status }) => {
   const [emai, setemai] = useState(false);
   const [passwor, setPasswor] = useState(false);
   const [passworComfirm, setPassworComfirm] = useState(false);
-const {userID} = useParams();
+
 
   const [users, setUsers] = useState([]);
          useEffect(() => {
@@ -32,7 +30,7 @@ const {userID} = useParams();
   return (
   
         <Form className = "profile-form">
-          <h2>Edit Your Profile!</h2>
+          <h2>Edit Your Profile:</h2>
          
             <Field
               onFocus={() => setToggled(!toggled)}
@@ -94,7 +92,7 @@ const {userID} = useParams();
               <p className="hasError">{errors.password}</p>
             )}
     
-          <button type="submit">Sign Up</button>
+          <button type="submit">Save</button>
         </Form>
      
   );

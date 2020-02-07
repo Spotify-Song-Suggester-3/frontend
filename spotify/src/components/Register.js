@@ -88,32 +88,6 @@ const Register = ({ values, errors, touched, status }) => {
       <Display>
         <Form>
           <h2>Register</h2>
-          <Label htmlFor="firstName">
-            <Field
-              onFocus={() => setToggled(!toggled)}
-              className={`border ${toggled ? "toggled" : ""}`}
-              id="firstName"
-              type="text"
-              name="firstName"
-              placeholder="first name"
-            />
-            {touched.firstName && errors.firstName && (
-              <p className="hasError">{errors.firstName}</p>
-            )}
-          </Label>
-          <Label htmlFor="lastName">
-            <Field
-              onFocus={() => setLastname(!lastname)}
-              className={`border ${lastname ? "toggled" : ""}`}
-              id="lastName"
-              type="text"
-              name="lastName"
-              placeholder="last name"
-            />
-            {touched.lastName && errors.lastName && (
-              <p className="hasError">{errors.lastName}</p>
-            )}
-          </Label>
           <Label htmlFor="username">
             <Field
               onFocus={() => setUsernam(!usernam)}
@@ -153,19 +127,32 @@ const Register = ({ values, errors, touched, status }) => {
               <p className="hasError">{errors.password}</p>
             )}
           </Label>
-          {/* <Label htmlFor="passwordconfirm">
+          <Label htmlFor="firstName">
             <Field
-              onFocus={() => setPassworComfirm(!passworComfirm)}
-              className={`border ${passworComfirm ? "toggled" : ""}`}
-              id="passwordconfirm"
+              onFocus={() => setToggled(!toggled)}
+              className={`border ${toggled ? "toggled" : ""}`}
+              id="firstName"
               type="text"
-              name="passwordconfirm"
-              placeholder="password confirm"
+              name="firstName"
+              placeholder="first name"
             />
-            {touched.passwordconfirm && errors.passwordconfirm && (
-              <p className="hasError">{errors.passwordconfirm}</p>
+            {touched.firstName && errors.firstName && (
+              <p className="hasError">{errors.firstName}</p>
             )}
-          </Label> */}
+          </Label>
+          <Label htmlFor="lastName">
+            <Field
+              onFocus={() => setLastname(!lastname)}
+              className={`border ${lastname ? "toggled" : ""}`}
+              id="lastName"
+              type="text"
+              name="lastName"
+              placeholder="last name"
+            />
+            {touched.lastName && errors.lastName && (
+              <p className="hasError">{errors.lastName}</p>
+            )}
+          </Label>
           <Button type="submit">Sign Up</Button>
         </Form>
         <Link to="/">
@@ -178,33 +165,32 @@ const Register = ({ values, errors, touched, status }) => {
 
 const ForMikRegister = withFormik({
   mapPropsToValues({
-    firstName,
-    lastName,
     username,
     email,
     password,
-    // passwordconfirm
+    firstName,
+    lastName,
+ 
   }) {
     return {
-      firstName: firstName || "",
-      lastName: lastName || "",
       username: username || "",
       email: email || "",
       password: password || "",
-      // passwordconfirm: passwordconfirm || ""
+      firstName: firstName || "",
+      lastName: lastName || "",
     };
   },
   validationSchema: Yup.object().shape({
-    firstName: Yup.string().required("First Name is Required"),
-    lastName: Yup.string().required("Last Name is Required"),
     username: Yup.string().required("Username is Required"),
     email: Yup.string()
       .email()
       .required("Email is Required"),
     password: Yup.string()
-      .min(5)
-      .max(50)
+      // .min(5)
+      // .max(50)
       .required("Password is Required"),
+      firstName: Yup.string().required("First Name is Required"),
+      lastName: Yup.string().required("Last Name is Required"),
 
   }),
   handleSubmit(values, { props, setStatus, resetForm }) {

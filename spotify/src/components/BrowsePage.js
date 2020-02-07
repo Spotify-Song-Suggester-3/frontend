@@ -4,31 +4,32 @@ import {fetchSongs} from '../actions';
 import SearchFeed from './SearchFeed';
 import {Button, Card,CardText, CardTitle, CardBody} from 'reactstrap';
 import axiosWithAuth from '../utils/axiosWithAuth';
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from 'axios';
 
 const BrowsePage = (props) =>{
 const {userID} = props;
-
+const {id} =useParams
 
 
 const [favSongs, setFavSongs] = useState({
-    title:'',
+    Title:'',
     Artist: ''
 
 });
 const addSong =()=>{
-    // axiosWithAuth()
-    // .post ('https://reqres.in/api/users/', favSongs)
-    // .then(res=>{
-    // console.log('POST RES',res)
+    axiosWithAuth()
+    .get (`/songs/${props.gettingSongs.id}`, favSongs)
+    .then(res=>{
+    console.log('POST RES',res)
         //get song by id? set res. then push onto fav array?****
-        
-        setFavSongs(props.favorites.push.favSongs)
+
+        // setFavSongs(res.data)
+        // props.favorites.push(setFavSongs)
         alert('Song Added!')
         console.log('FAVS',favSongs)
                
-    // })
+    })
     }
 
 return (

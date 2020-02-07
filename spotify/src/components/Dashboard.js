@@ -8,45 +8,36 @@ import {fetchSongs} from '../actions';
 import {useParams} from 'react-router-dom';
 import EditForm from './EditForm';
  function Dashboard (props) {
-const {userID} = useParams;
+const {userID} = useParams();
+ const [recSongs, setRecSongs] = useState([]);
 
 
-  const [edit, setEdit] = useState({
-    email:'',
-    username:'',
-    password:'',
-    firstName:'',
-    LastName:''
-    
-    });
-    
-    const handleChanges = e =>{
-     setEdit({
-       ...edit,
-      [e.target.name] : e.target.value
+
+ useEffect(() => {
+  axiosWithAuth()
+    .get(
+      `https://spotify-song-suggester-3.herokuapp.com/api/suggested`)
+    .then(response => {
+   
+      console.log('SUGGEST SONGS RES',response.data);
+      
+      setRecSongs(response.data);
     })
-    }
-    
-    const handleSubmit = e =>{
-      e.preventDefault();
-      axiosWithAuth()
-      .put
-        (`users/${userID}`, edit)
-      .then(response => {
-        const token = localStorage.setItem('token', response.data.token)
-        console.log("EDIT RES",response.data);
-        console.log('SUBMITTING EDIT')
-        // props.history.push('/dashboard');
-      }
-      )
-    }
-       
-       
-  const [favorites, setFavorites] = useState([]);
-
- 
+    .catch(err=>console.log(err))
+}, []); 
 
 
+
+
+const deleteProfile= props => {
+  axiosWithAuth()
+  .delete(`/users/${props.UserID}`)
+  .then(res =>{
+    console.log('DELTEING', res)
+  })
+  .catch(err=>console.log('DELETING',err))
+  
+};
 
   return (
     <div>
@@ -63,21 +54,14 @@ const {userID} = useParams;
           <h2>Welcome (username)</h2>
           <p>Edit Your Profile Here</p>
       <EditForm/>
+      <Button onClick = {deleteProfile}color="secondary">Delete Profile</Button>
       </div>
       </div>
         <div className="split-container fav-container">
-        <h2>Favorite Songs List</h2>
+        <h2>Here's What We Recommend</h2>
           <div className="favorites-list">
-            {/* {props.favorites.length ? props.favorites.map(song =>(
-             <p>song: {song.track}</p> 
-            <p> artist: {song.artist}</p> 
-           
-            <Button onDelete = {deleteFav} color="secondary">Delete Song</Button>
-            ))
-            :
-            <p>Like some songs</p>
-            } */}
-            <Button  color="secondary">Delete Song</Button>
+
+          
           </div>
         </div>
       </div>
