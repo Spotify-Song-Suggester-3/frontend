@@ -109,7 +109,7 @@ const Login = ({ values, errors, touched, status, handleSubmit }) => {
           <Button type="submit">LOG IN</Button>
         </Form1>
         <Link to="/register">
-          <Button1>Don't have an account? Sign Up</Button1>
+          <Button1 className="button">Don't have an account? Sign Up</Button1>
         </Link>
       </Display>
     </WholeForm>
