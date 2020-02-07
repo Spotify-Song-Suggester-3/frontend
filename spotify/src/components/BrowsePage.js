@@ -12,24 +12,22 @@ const {userID} = props;
 const {id} =useParams
 
 
-const [favSongs, setFavSongs] = useState({
-    Title:'',
-    Artist: ''
+const [favSongs, setFavSongs] = useState([]);
+const addSong =(id)=>{
+    alert('Song Added!')
+    
+    // axiosWithAuth()
+    // .get (`/songs/${id}`)
 
-});
-const addSong =()=>{
-    axiosWithAuth()
-    .get (`/songs/${props.gettingSongs.id}`, favSongs)
-    .then(res=>{
-    console.log('POST RES',res)
-        //get song by id? set res. then push onto fav array?****
-
-        // setFavSongs(res.data)
-        // props.favorites.push(setFavSongs)
-        alert('Song Added!')
-        console.log('FAVS',favSongs)
+    // .then(res=>{
+    // console.log('POST RES',res)
+    //     //get song by id? set res. then push onto fav array?****
+    //     //endpoint not working returning "[object20%object]"
+        
+     
+    //     console.log('FAVS',favSongs)
                
-    })
+    // })
     }
 
 return (
@@ -72,11 +70,6 @@ return (
                         </CardText>
                         </div>
                         
-                        {/*setup for OUR points:
-                         key{id}
-                        Title{song.song_title},
-                        Artist{song.artist},
-                        favorite{song.favorite} */}
                         <Button color ="secondary" onClick = {addSong}>Save.</Button>
                         </CardBody>
                     </Card>

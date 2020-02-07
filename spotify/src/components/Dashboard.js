@@ -13,31 +13,32 @@ const {userID} = useParams();
 
 
 
- useEffect(() => {
-  axiosWithAuth()
-    .get(
-      `https://spotify-song-suggester-3.herokuapp.com/api/suggested`)
-    .then(response => {
-   
-      console.log('SUGGEST SONGS RES',response.data);
-      
-      setRecSongs(response.data);
-    })
-    .catch(err=>console.log(err))
-}, []); 
-
-
-
-
-// const deleteProfile= props => {
+//  useEffect(() => {
 //   axiosWithAuth()
-//   .delete(`/users/${props.UserID}`)
-//   .then(res =>{
-//     console.log('DELTEING', res)
-//   })
-//   .catch(err=>console.log('DELETING',err))
+//     .get(
+//       `https://spotify-song-suggester-3.herokuapp.com/api/suggested`)
+//     .then(response => {
+   
+//       console.log('SUGGEST SONGS RES',response.data);
+      
+//       setRecSongs(response.data);
+//     })
+//     .catch(err=>console.log(err))
+// }, []); 
+
+
+
+
+const deleteProfile= () => {
+  axiosWithAuth()
+  .delete(`https://spotify-song-suggester-3.herokuapp.com/api/users/${props.userID}`)
+  .then(res =>{
+    console.log('DELTEING', res)
+    alert('Sorry to see you go!')
+  })
+  .catch(err=>console.log('DELETING',err))
   
-// };
+};
 
   return (
     <div>
@@ -54,7 +55,7 @@ const {userID} = useParams();
           <h2>Welcome (username)</h2>
           <p>Edit Your Profile Here</p>
       <EditForm/>
-      <Button onClick = {deleteProfile}color="secondary">Delete Profile</Button>
+      <Button onClick ={deleteProfile} color="secondary">Delete Profile</Button>
       </div>
       </div>
         <div className="split-container fav-container">

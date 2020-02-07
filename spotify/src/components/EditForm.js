@@ -6,7 +6,7 @@ import "../App.css";
 import { Spinner } from "react-spinkit";
 import axiosWithAuth from '../utils/axiosWithAuth';
 import {connect} from 'react-redux';
-
+import {Button} from 'reactstrap';
 
 const EditForm = ({ values, errors, touched, status }) => {
   const [toggled, setToggled] = useState(false);
@@ -92,7 +92,7 @@ const EditForm = ({ values, errors, touched, status }) => {
               <p className="hasError">{errors.password}</p>
             )}
     
-          <button type="submit">Save</button>
+          <Button type="submit">Save</Button>
         </Form>
      
   );
