@@ -29,15 +29,15 @@ const {userID} = useParams();
 
 
 
-const deleteProfile= props => {
-  axiosWithAuth()
-  .delete(`/users/${props.UserID}`)
-  .then(res =>{
-    console.log('DELTEING', res)
-  })
-  .catch(err=>console.log('DELETING',err))
+// const deleteProfile= props => {
+//   axiosWithAuth()
+//   .delete(`/users/${props.UserID}`)
+//   .then(res =>{
+//     console.log('DELTEING', res)
+//   })
+//   .catch(err=>console.log('DELETING',err))
   
-};
+// };
 
   return (
     <div>
