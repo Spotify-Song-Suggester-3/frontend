@@ -14,23 +14,18 @@ const EditForm = ({ values, errors, touched, status }) => {
   const [usernam, setUsernam] = useState(false);
   const [emai, setemai] = useState(false);
   const [passwor, setPasswor] = useState(false);
-  const [passworComfirm, setPassworComfirm] = useState(false);
-
 
   const [users, setUsers] = useState([]);
-         useEffect(() => {
-
-        status && setUsers(users => [
+    useEffect(() => {
+      status && setUsers(users => [
             ...users, status
         ]);
     }, [status]);
 
-
-
   return (
   
         <Form className = "profile-form">
-          <h2>Edit Your Profile:</h2>
+          <h6>Edit Your Profile:</h6>
          
             <Field
               onFocus={() => setToggled(!toggled)}
@@ -100,26 +95,23 @@ const EditForm = ({ values, errors, touched, status }) => {
 
 const FormikUpdateForm = withFormik({
   mapPropsToValues({
-    firstName,
-    lastName,
+
     username,
     email,
     password,
-    userID
-    // passwordconfirm
+    firstName,
+    lastName,
   }) {
     return {
-      firstName: firstName || "",
-      lastName: lastName || "",
+
       username: username || "",
       email: email || "",
       password: password || "",
-      // passwordconfirm: passwordconfirm || ""
+      firstName: firstName || "",
+      lastName: lastName || "",
     };
   },
   validationSchema: Yup.object().shape({
-    firstName: Yup.string().required("First Name is Required"),
-    lastName: Yup.string().required("Last Name is Required"),
     username: Yup.string().required("Username is Required"),
     email: Yup.string()
       .email()
@@ -128,29 +120,22 @@ const FormikUpdateForm = withFormik({
       .min(5)
       .max(50)
       .required("Password is Required"),
-    // passwordconfirm: Yup.string().oneOf(
-    //   [Yup.ref("password"), null],
-    //   "Passwords must match"
-    // )
+      firstName: Yup.string().required("First Name is Required"),
+    lastName: Yup.string().required("Last Name is Required"),
+
   }),
  
-  handleSubmit(values, { props, setStatus, resetForm }) {
+  handleSubmit(values, { props, setStatus, resetForm}) {
     console.log("submitting", values);
-  
+    alert('profile updated!')
     axiosWithAuth()
       .put(`https://spotify-song-suggester-3.herokuapp.com/api/users/${props.userID}`,values)
       .then(res => {
         // setStatus(res.data);
        console.log(res.data)
-        // props.history.push('/');
         console.log("UPDATED PROFILE",res);
       })
       .catch(error => console.log(error.res));
-    console.log("submitted First name:", values.firstName);
-    console.log("submitted Last name:", values.lastName);
-    console.log("submitted email:", values.email);
-    console.log("submitted username:", values.username);
-    console.log("submitted password:", values.password);
    
   }
 })(EditForm);

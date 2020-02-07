@@ -15,7 +15,7 @@ const {id} =useParams
 const [favSongs, setFavSongs] = useState([]);
 const addSong =(id)=>{
     alert('Song Added!')
-    
+
     // axiosWithAuth()
     // .get (`/songs/${id}`)
 
@@ -35,10 +35,11 @@ return (
     <div className = "browse-cont">
 
         <div className = "browse-header">
+            <div className = "nav-links">
     <Link to = {`/dashboard`}>Home </Link>
     <Link to = {`/search`}>Search </Link>
     <Link to = {`/`}>Logout </Link>
-
+    </div>
         </div>
 
 
@@ -77,12 +78,12 @@ return (
                   
                     </div>
                         )
-     })}
-    </div>
-)}
-</div>
-</div>
-)
+                         })}
+                 </div>
+                    )}
+                  </div>
+        </div>
+    )
 
 }
 

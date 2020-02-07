@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import {fetchSongs} from '../actions';
-import axios from 'axios';
+import {Card, CardTitle, CardBody} from 'reactstrap';
 import axiosWithAuth from '../utils/axiosWithAuth';
 const SearchFeed = (props) =>{
  
@@ -32,6 +32,17 @@ const SearchFeed = (props) =>{
   };
 
   return (
+    <div>
+
+    <div className = "browse-header">
+<div className = "nav-links">
+    <Link to = {`/dashboard`}>Home </Link>
+    <Link to = {`/search`}>Search </Link>
+    <Link to = {`/`}>Logout </Link>
+</div>
+        </div>
+
+
     <div className="name-search">
       <form className="search">
         <input
@@ -46,16 +57,19 @@ const SearchFeed = (props) =>{
         />
       </form>
       <div className="search-return">
+      <Card>
         {names.map(name => {
           return (
+            
             <div
               className="char-search"
               key={name.id}
             >
+              <Link to = {`/browse`}>
               <p>
-               
                Title: {name.song_title}
               </p>
+              </Link>
               <p>
                
                Artist {name.artist}
@@ -64,8 +78,12 @@ const SearchFeed = (props) =>{
             </div>
           );
         })}
+        </Card>
       </div>
     </div>
+
+    </div>
+    
   );
 }
 

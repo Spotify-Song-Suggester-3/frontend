@@ -140,8 +140,6 @@ const ForMikLogin = withFormik({
         props.history.push("/dashboard")
       })
       .catch(error => console.log(error.response));
-    // console.log("submitted email:", values.username);
-    // console.log("submitted password:", values.password);
   }
 })(Login);
 
