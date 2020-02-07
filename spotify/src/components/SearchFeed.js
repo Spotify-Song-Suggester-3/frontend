@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import {fetchSongs} from '../actions';
-import {Card, CardTitle, CardBody} from 'reactstrap';
+import {Card, CardBody} from 'reactstrap';
 import axiosWithAuth from '../utils/axiosWithAuth';
 const SearchFeed = (props) =>{
  
-
   const [names, setNames] = useState([]);
   const [query, setQuery] = useState("");
   useEffect(() => {
@@ -16,13 +15,13 @@ const SearchFeed = (props) =>{
       .then(response => {
         const search = response.data;
         console.log('SONG SEARch RES',response.data);
-        const result = search.filter(character =>
+        const result = search.filter(song =>
         
-          character.song_title
+          song.song_title
             .toLowerCase()
             .includes(query.toLowerCase())
             ||
-            character.artist.toLowerCase().includes(query.toLowerCase())
+            song.artist.toLowerCase().includes(query.toLowerCase())
         );
         setNames(result);
       });
@@ -57,7 +56,7 @@ const SearchFeed = (props) =>{
         />
       </form>
       <div className="search-return">
-      <Card>
+      <Card body inverse style={{ backgroundColor: 'transparent', borderColor: '#333' }}>
         {names.map(name => {
           return (
             
@@ -66,14 +65,15 @@ const SearchFeed = (props) =>{
               key={name.id}
             >
               <Link to = {`/browse`}>
-              <p>
+              <h7>
+                <span>
                Title: {name.song_title}
-              </p>
+               </span>
+              </h7>
               </Link>
-              <p>
-               
-               Artist {name.artist}
-              </p>
+              <h7>
+               Artist: {name.artist}
+              </h7>
              
             </div>
           );

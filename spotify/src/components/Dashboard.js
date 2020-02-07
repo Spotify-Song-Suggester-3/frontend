@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Button, Card,CardText, CardTitle, CardBody, CardSubtitle} from 'reactstrap';
+import {Button, Card, CardTitle, CardBody, CardSubtitle,CardGroup} from 'reactstrap';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
@@ -10,8 +10,6 @@ import EditForm from './EditForm';
 const {userID} = useParams();
  const [recSongs, setRecSongs] = useState([]);
 
-
-
  useEffect(() => {
   axiosWithAuth()
     .get(
@@ -19,7 +17,6 @@ const {userID} = useParams();
     .then(response => {
    //only show 1st 50 songs
       let recFilter =[];
-      console.log('SUGGEST SONGS RES',response.data);
       for (let i=0; i < 50; i++){
         if(response.data[i]){
           recFilter.push(response.data[i])
@@ -31,14 +28,11 @@ const {userID} = useParams();
     .catch(err=>console.log(err))
 }, []); 
 
-
-
 const deleteProfile= () => {
   alert('Sorry to see you go!')
   axiosWithAuth()
   .delete(`https://spotify-song-suggester-3.herokuapp.com/api/users/${userID}`)
   .then(res =>{
-    console.log('DELTEING', res)
     alert('Sorry to see you go!')
   })
   .catch(err=>console.log('DELETING',err))
@@ -47,7 +41,9 @@ const deleteProfile= () => {
 
   return (
     <div>
+      <Link>
       <h2 className="App-header">Welcome To Your Dashboard</h2>
+      </Link>
       <div className="title-container">
         <h2>Let's Find Some New Music!</h2>
         <Link to = {`/browse`}>
@@ -60,7 +56,7 @@ const deleteProfile= () => {
           <h1>Welcome To Spotify Song Suggestor</h1>
           
       <EditForm/>
-      <Link>
+      <Link to = {`/`}>
       <Button onClick ={deleteProfile} color="secondary">Delete Profile</Button>
       </Link>
       </div>
@@ -72,7 +68,7 @@ const deleteProfile= () => {
           <div className = "browse-map-cont">
           {recSongs.length ? recSongs.map((song, id) => {
             return (
-              
+              <CardGroup>
               <Card body inverse style={{ backgroundColor: 'transparent', borderColor: '#333' }}>
                <CardBody>
                <div className = "song-card">
@@ -83,12 +79,10 @@ const deleteProfile= () => {
         
                   </CardBody>
               </Card>
-
-           
-           
+              </CardGroup>
                     )})
                     :
-                    <p>Go like some songs!</p>
+                    <p>Loading..</p>
                     }
                   
                   </div>

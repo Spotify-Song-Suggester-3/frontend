@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
-import styled from "styled-components";
 import "../App.css";
-import { Spinner } from "react-spinkit";
 import axiosWithAuth from '../utils/axiosWithAuth';
 import {connect} from 'react-redux';
 import {Button} from 'reactstrap';
@@ -11,9 +9,9 @@ import {Button} from 'reactstrap';
 const EditForm = ({ values, errors, touched, status }) => {
   const [toggled, setToggled] = useState(false);
   const [lastname, setLastname] = useState(false);
-  const [usernam, setUsernam] = useState(false);
-  const [emai, setemai] = useState(false);
-  const [passwor, setPasswor] = useState(false);
+  const [username, setUsername] = useState(false);
+  const [email, setemail] = useState(false);
+  const [password, setPassword] = useState(false);
 
   const [users, setUsers] = useState([]);
     useEffect(() => {
@@ -52,7 +50,7 @@ const EditForm = ({ values, errors, touched, status }) => {
             )}
           
             <Field
-              onFocus={() => setUsernam(!usernam)}
+              onFocus={() => setUsername(!username)}
               className="profile-div"
               id="username"
               type="text"
@@ -64,7 +62,7 @@ const EditForm = ({ values, errors, touched, status }) => {
             )}
           
             <Field
-              onFocus={() => setemai(!emai)}
+              onFocus={() => setemail(!email)}
               className="profile-div"
               id="email"
               type="text"
@@ -76,7 +74,7 @@ const EditForm = ({ values, errors, touched, status }) => {
             )}
         
             <Field
-              onFocus={() => setPasswor(!passwor)}
+              onFocus={() => setPassword(!password)}
               className="profile-div"
               id="password"
               type="text"
@@ -112,16 +110,15 @@ const FormikUpdateForm = withFormik({
     };
   },
   validationSchema: Yup.object().shape({
-    username: Yup.string().required("Username is Required"),
+    username: Yup.string().required("Username Required"),
     email: Yup.string()
       .email()
-      .required("Email is Required"),
+      .required("Email Required"),
     password: Yup.string()
       .min(5)
-      .max(50)
-      .required("Password is Required"),
-      firstName: Yup.string().required("First Name is Required"),
-    lastName: Yup.string().required("Last Name is Required"),
+      .required("Password Required"),
+      firstName: Yup.string().required("First Name Required"),
+    lastName: Yup.string().required("Last Name Required"),
 
   }),
  
@@ -131,9 +128,9 @@ const FormikUpdateForm = withFormik({
     axiosWithAuth()
       .put(`https://spotify-song-suggester-3.herokuapp.com/api/users/${props.userID}`,values)
       .then(res => {
-        // setStatus(res.data);
+        setStatus(res.data);
        console.log(res.data)
-        console.log("UPDATED PROFILE",res);
+       resetForm();
       })
       .catch(error => console.log(error.res));
    

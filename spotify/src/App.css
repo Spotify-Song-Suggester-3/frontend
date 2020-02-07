@@ -79,6 +79,7 @@
 
 
 
+
 .browse-cont{
   padding:5%
 }
@@ -92,6 +93,8 @@
   justify-content: space-evenly;
   padding-bottom: 5%;
 }
+
+
 
 
 @keyframes gradient {

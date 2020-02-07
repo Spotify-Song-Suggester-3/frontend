@@ -9,7 +9,6 @@ import { Spinner } from "react-spinkit";
 import axiosWithAuth from '../utils/axiosWithAuth';
 
 
-
 const WholeForm = styled.div`
   width: 100%;
   height: 100vh;
@@ -71,7 +70,6 @@ const Register = ({ values, errors, touched, status }) => {
   const [usernam, setUsernam] = useState(false);
   const [emai, setemai] = useState(false);
   const [passwor, setPasswor] = useState(false);
-  const [passworComfirm, setPassworComfirm] = useState(false);
 
   const [users, setUsers] = useState([]);
          useEffect(() => {
@@ -80,8 +78,6 @@ const Register = ({ values, errors, touched, status }) => {
             ...users, status
         ]);
     }, [status]);
-
-
 
   return (
     <WholeForm>
@@ -186,8 +182,8 @@ const ForMikRegister = withFormik({
       .email()
       .required("Email is Required"),
     password: Yup.string()
-      // .min(5)
-      // .max(50)
+      .min(5)
+      .max(50)
       .required("Password is Required"),
       firstName: Yup.string().required("First Name is Required"),
       lastName: Yup.string().required("Last Name is Required"),
@@ -204,11 +200,7 @@ const ForMikRegister = withFormik({
         console.log("REGISTER",res);
       })
       .catch(error => console.log(error.res));
-    console.log("submitted First name:", values.firstName);
-    console.log("submitted Last name:", values.lastName);
-    console.log("submitted email:", values.email);
-    console.log("submitted username:", values.username);
-    console.log("submitted password:", values.password);
+
    
   }
 })(Register);
